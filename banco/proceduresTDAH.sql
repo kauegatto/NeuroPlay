@@ -1,0 +1,265 @@
+Delimiter $$
+
+/* Procedure para login do usuario */
+
+Drop Procedure If Exists loginUsuario$$
+
+Create Procedure loginUsuario(vEmailUsuario varchar(200), vSenhaUsuario varchar(128))
+begin
+
+SELECT 
+	nm_email_usuario, nm_usuario 
+FROM 
+	usuario 
+where 
+	nm_email_usuario = vEmailUsuario
+and 
+	nm_senha_usuario = md5(vSenhaUsuario); 
+
+end$$
+
+/* Procedure para login do paciente */
+
+Drop Procedure if Exists loginPaciente$$
+
+Create Procedure loginPaciente(vEmailPaciente varchar(200), vSenhaPaciente varchar(128))
+begin
+
+select 
+	nm_login_paciente, nm_paciente
+from
+	paciente
+where
+	nm_login_paciente = vEmailPaciente
+and
+	nm_senha_paciente = md5(vSenhaPaciente);
+
+end$$
+
+/* Procedure para inserir um novo usuario (cadastro) */
+
+Drop Procedure if exists inserirUsuario$$
+
+Create Procedure inserirUsuario(vEmailUsuario varchar(200), vSenhaUsuario varchar(128), 
+vTelefoneUsuario varchar(15), vNomeUsuario varchar(200), vDsUsuario text)
+begin
+
+insert into 
+	usuario
+values
+	(vEmailUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vNomeUsuario, vDsUsuario, 1);
+end$$
+
+/* Procedure para consultar todos os temas */
+
+Drop Procedure if exists dadosTema$$
+
+Create Procedure dadosTema()
+begin
+
+	select * from tema;
+
+end$$
+
+/* Procedure para consultar todas as atividades perante um especifico tema */
+
+Drop Procedure if exists dadosAtividade$$
+
+Create Procedure dadosAtividade(vCdTema int(11))
+begin
+
+select 
+	cd_atividade, nm_atividade 
+from 
+	atividade 
+where 
+	cd_tema = vCdTema;
+end$$
+
+/* Procedure para consultar todas as info de uma atividade */
+
+Drop Procedure if exists dadosAtividadeEscolhida$$
+
+Create Procedure dadosAtividadeEscolhida(vCdAtividade int(11))
+begin
+
+select 
+	nm_atividade, ds_atividade 
+from 
+	atividade 
+where 
+	cd_atividade = vCdAtividade;
+
+end$$
+
+/* procedure que retorna somente o nome do paciente*/
+
+Drop procedure if exists nomePaciente$$
+
+Create Procedure nomePaciente()
+begin
+
+	select nm_paciente from paciente;
+
+end$$
+
+/* Função que retorna a quantidade de atividades que um paciente realizou*/
+
+Drop Function If exists qtdAtividadePaciente$$
+
+Create Function qtdAtividadePaciente(vEmailPaciente varchar(200)) returns int
+begin
+	declare qtdAtividade int;
+
+	select 
+		count(vEmailPaciente) 
+    into 
+		qtdAtividade 
+	from
+		paciente_atividade 
+	where 
+		nm_login_paciente = vEmailPaciente;
+
+	return qtdAtividade; 
+end$$
+
+/* Função que retorna o tema de menor dificultade de um paciente  */
+
+Drop Function if exists menorDificultade$$
+
+Create Function menorDificultade(vEmailPaciente varchar(200)) returns varchar(200)
+begin
+
+	declare menorDif varchar(200);
+
+	select 
+		t.nm_tema 
+	into
+		menorDif
+	from 
+		paciente_atividade pa join atividade a 
+	on 
+		(a.cd_atividade = pa.cd_atividade)
+	join 
+		tema t 
+    on
+		(a.cd_tema = t.cd_tema)
+	where
+		pa.cd_avaliacao = 1 and pa.nm_login_paciente = vEmailPaciente
+	group by
+		t.nm_tema;
+
+	return menorDif;
+
+end$$
+
+/* Função que retorna o tema de menor dificultade de um paciente */
+
+Drop function if exists maiorDificultade$$
+
+Create Function maiorDificultade(vEmailPaciente varchar(200)) returns varchar(200)
+begin
+
+	declare maiorDif varchar(200);
+
+	select 
+		t.nm_tema 
+	into
+		maiorDif
+	from 
+		paciente_atividade pa join atividade a 
+	on 
+		(a.cd_atividade = pa.cd_atividade)
+	join 
+		tema t 
+    on
+		(a.cd_tema = t.cd_tema)
+	where
+		pa.cd_avaliacao = 3 and pa.nm_login_paciente = vEmailPaciente
+	group by
+		t.nm_tema;
+
+	return maiorDif;
+
+end$$
+
+/* Procedure que retorna todos os dados de um paciente perante as suas atividades (relatorio geral)*/
+
+Drop procedure if exists relatorioPaciente$$
+
+Create procedure relatorioPaciente(vEmailPaciente varchar(200))
+begin
+
+	select 
+		nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificultade(vEmailPaciente) as menorDif,
+        maiorDificultade(vEmailPaciente) as maiorDif
+	from 
+		paciente 
+	where 
+		nm_login_paciente = vEmailPaciente
+	group by
+		vEmailPaciente;
+
+end$$ 
+
+Drop procedure if exists atividadeRealizada$$
+
+Create procedure atividadeRealizada(vEmailPaciente varchar(200))
+begin
+ 
+	select 
+		a.cd_atividade, date_format(pa.dt_realizacao, '%d/%m/%Y'), a.nm_atividade
+	from 
+		atividade a 
+	join
+		paciente_atividade pa 
+	on 
+		(pa.cd_atividade = a.cd_atividade)
+	where
+		nm_login_paciente = vEmailPaciente;
+end$$
+
+/* Procedure que retorna os detalhes atv */
+
+Drop procedure if exists detalhesAtividade$$
+
+Create procedure detalhesAtividade(vCdAtividade int, vEmailPaciente varchar(200))
+begin
+ 
+	select 
+		a.cd_atividade, date_format(pa.dt_realizacao, '%d/%m/%Y'), a.nm_atividade, 
+        pa.ic_terminou, t.nm_tema, ta.nm_avaliacao, tatv.ic_tem_nota
+	from 
+		atividade a 
+	join
+		paciente_atividade pa 
+	on 
+		(pa.cd_atividade = a.cd_atividade)
+	join
+		tema t 
+	on
+		(a.cd_tema = t.cd_tema)
+	join
+		tipo_avaliacao ta 
+	on
+		(pa.cd_avaliacao = ta.cd_avaliacao)
+	join 
+		tipo_atividade tatv
+	on
+		(tatv.cd_tipo_atividade = a.cd_tipo_atividade)
+	where
+		pa.cd_atividade = vCdAtividade and nm_login_paciente = vEmailPaciente;
+end$$
+
+/* Procedure que altera a senha do usuario*/
+
+Drop procedure if exists alterarSenhaUsuario$$
+
+Create procedure alterarSenhaUsuario(vEmailUsuario varchar(200), vNovaSenha varchar(128))
+begin
+
+	update usuario set nm_senha_usuario = md5(vNovaSenha) where nm_email_usuario = vEmailUsuario;
+
+end$$
+
+Delimiter ;
