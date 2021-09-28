@@ -50,6 +50,39 @@ values
 	(vEmailUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vNomeUsuario, vDsUsuario, 1);
 end$$
 
+/* Procedure que altera a senha do usuario*/
+
+Drop procedure if exists alterarSenhaUsuario$$
+
+Create procedure alterarSenhaUsuario(vEmailUsuario varchar(200), vNovaSenha varchar(128))
+begin
+
+	update usuario set nm_senha_usuario = md5(vNovaSenha) where nm_email_usuario = vEmailUsuario;
+
+end$$
+
+/* Procedure que altera o telefone do usuario*/
+
+Drop procedure if exists alterarTelefoneUsuario$$
+
+Create procedure alterarTelefoneUsuario(vEmailUsuario varchar(200), vNovoTelefone varchar(15))
+begin
+
+	update usuario set cd_telefone_usuario = vNovoTelefone where nm_email_usuario = vEmailUsuario;
+
+end$$
+
+/* Procedure que altera o nome do usuario*/
+
+Drop procedure if exists alterarNomeUsuario$$
+
+Create procedure alterarNomeUsuario(vEmailUsuario varchar(200), vNovoNome varchar(200))
+begin
+
+	update usuario set nm_usuario = vNovoNome where nm_email_usuario = vEmailUsuario;
+
+end$$
+
 /* Procedure para consultar todos os temas */
 
 Drop Procedure if exists dadosTema$$
@@ -92,14 +125,37 @@ where
 
 end$$
 
-/* procedure que retorna somente o nome do paciente*/
+/* procedure que retorna o nome do paciente e email*/
 
 Drop procedure if exists nomePaciente$$
 
-Create Procedure nomePaciente()
+Create Procedure nomePaciente(vEmailUsuario varchar(200))
 begin
 
-	select nm_paciente from paciente;
+	select nm_login_paciente, nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
+
+end$$
+
+/* procedure que exclui um paciente*/
+
+Drop procedure if exists excluirPaciente$$
+
+Create Procedure excluirPaciente(vEmailPaciente varchar(200))
+begin
+
+	delete from video_paciente where nm_login_paciente = vEmailPaciente;
+	delete from paciente where nm_login_paciente = vEmailPaciente;
+
+end$$
+
+/* procedure que altera dados de um paciente*/
+
+Drop procedure if exists alterarDadosPaciente$$
+
+Create Procedure alterarDadosPaciente(vEmailPaciente varchar(200), vNomePaciente varchar(200))
+begin
+
+	update paciente set nm_paciente = vNomePaciente;
 
 end$$
 
@@ -249,17 +305,6 @@ begin
 		(tatv.cd_tipo_atividade = a.cd_tipo_atividade)
 	where
 		pa.cd_atividade = vCdAtividade and nm_login_paciente = vEmailPaciente;
-end$$
-
-/* Procedure que altera a senha do usuario*/
-
-Drop procedure if exists alterarSenhaUsuario$$
-
-Create procedure alterarSenhaUsuario(vEmailUsuario varchar(200), vNovaSenha varchar(128))
-begin
-
-	update usuario set nm_senha_usuario = md5(vNovaSenha) where nm_email_usuario = vEmailUsuario;
-
 end$$
 
 Delimiter ;
