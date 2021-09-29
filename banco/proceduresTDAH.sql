@@ -125,6 +125,31 @@ where
 
 end$$
 
+/* Procedure para inserir a atividade realizada pelo paciente */
+
+Drop Procedure if exists atividadeRealizada$$
+
+Create Procedure atividadeRealizada(vEmailPaciente varchar(200), vCdAtividade int, vCdAvaliacao int, vDtRealizacao date,  vHrRealizacao time, vTerminou tinyint(1))
+begin
+
+insert into 
+	paciente_atividade 
+values
+	(vEmailPaciente, vCdAtividade, vCdAvaliacao, vDtRealizacao, vHrRealizacao, vTerminou);
+
+end$$
+
+/* procedure que retorna todos os dados da tabela video*/
+
+Drop procedure if exists videosPaciente$$
+
+Create procedure videosPaciente()
+begin
+
+	select * from video;
+
+end$$
+
 /* procedure que retorna o nome do paciente e email*/
 
 Drop procedure if exists nomePaciente$$
@@ -133,6 +158,15 @@ Create Procedure nomePaciente(vEmailUsuario varchar(200))
 begin
 
 	select nm_login_paciente, nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
+
+end$$
+
+Drop procedure if exists dadosPaciente$$
+
+Create procedure dadosPaciente()
+begin 
+
+	select * from paciente;
 
 end$$
 
