@@ -330,7 +330,7 @@ begin
 	on
 		(a.cd_tema = t.cd_tema)
 	join
-		tipo_avaliacao ta 
+		avaliacao_dificuldade ta 
 	on
 		(pa.cd_avaliacao = ta.cd_avaliacao)
 	join 

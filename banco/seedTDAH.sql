@@ -1,8 +1,8 @@
 /* MASSA DE TESTE TIPO_AVALIACAO */
 
-insert into tipo_avaliacao values (1, 'Fácil');
-insert into tipo_avaliacao values (2, 'Médio');
-insert into tipo_avaliacao values (3, 'Difícil');
+insert into avaliacao_dificuldade values (1, 'Fácil');
+insert into avaliacao_dificuldade values (2, 'Médio');
+insert into avaliacao_dificuldade values (3, 'Difícil');
 
 /* MASSA DE TESTE TEMA */
 
@@ -85,12 +85,12 @@ insert into atividade values (10, 'Que continente é esse?', 'Tente descobrir na
 
 /* MASSA DE TESTE PACIENTE_ATIVIDADE */
 
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 1, 1, '2021/09/07', '14:00:00', 1);
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/09/07', '15:00:00', 1);
+insert into paciente_atividade values ('brunooliveira11@gmail.com', 1, 1, '2021/09/07', '14:00:00', '2021/09/07', '14:20:00');
+insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/09/07', '15:00:00', '2021/09/07', '15:20:00');
 
 /* MASSA DE TESTE VIDEO_PACIENTE */
 
-insert into video_paciente values (1, 'brunooliveira11@gmail.com', 1, 1);
+insert into vsideo_paciente values (1, 'brunooliveira11@gmail.com', 1, 1);
 insert into video_paciente values (2, 'brunooliveira11@gmail.com', 2, 1);
 insert into video_paciente values (3, 'thelmareis@hotmail.com', 1, 1);
 insert into video_paciente values (4, 'thelmareis@hotmail.com', null, 0);
@@ -98,3 +98,5 @@ insert into video_paciente values (1, 'henriquefreittas@outlook.com', null, 0);
 insert into video_paciente values (2, 'henriquefreittas@outlook.com', null, 0);
 insert into video_paciente values (4, 'reginasilva@gmail.com', null, 0);
 insert into video_paciente values (5, 'reginasilva@gmail.com', null, 0);
+
+select * from paciente_atividade;

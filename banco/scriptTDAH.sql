@@ -2,11 +2,11 @@ DROP SCHEMA IF EXISTS prjTDAH;
 CREATE SCHEMA prjTDAH;
 USE prjTDAH;
 
-Create Table tipo_avaliacao
+Create Table avaliacao_dificuldade
 (
 	cd_avaliacao int(11),
 	nm_avaliacao varchar(200),
-	constraint primary key pk_tipo_avaliacao (cd_avaliacao)
+	constraint primary key pk_avaliacao_dificuldade (cd_avaliacao)
 );
 
 Create Table tema 
@@ -84,16 +84,17 @@ Create Table paciente_atividade
 	nm_login_paciente varchar(200),
 	cd_atividade int(11),
 	cd_avaliacao int(11),
-	dt_realizacao date,
-	hr_realizacao time,
-	ic_terminou bool,
-	constraint primary key pk_login_paciente_atividade (nm_login_paciente, cd_atividade, dt_realizacao, hr_realizacao),
+	dt_inicio date,
+	hr_inicio time,
+	dt_fim date,
+	hr_fim time,
+	constraint primary key pk_login_paciente_atividade (nm_login_paciente, cd_atividade, dt_inicio, hr_inicio, dt_fim, hr_fim),
 	constraint fk_login_paciente_atividade foreign key (nm_login_paciente) 
 	references paciente (nm_login_paciente),
 	constraint fk_atividade_paciente foreign key (cd_atividade)
 	references atividade (cd_atividade),
 	constraint fk_avaliacao_paciente foreign key (cd_avaliacao)
-	references tipo_avaliacao (cd_avaliacao)
+	references avaliacao_dificuldade (cd_avaliacao)
 );
 
 Create Table video_paciente
@@ -108,5 +109,5 @@ Create Table video_paciente
 	constraint fk_login_video_paciente foreign key (nm_login_paciente) 
 	references paciente (nm_login_paciente),
 	constraint fk_avaliacao_video_paciente foreign key (cd_avaliacao)
-	references tipo_avaliacao (cd_avaliacao)
+	references avaliacao_dificuldade (cd_avaliacao)
 );
