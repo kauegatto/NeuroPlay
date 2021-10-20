@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 export default (req, res, next) => {
   const { authorization } = req.headers;
-
   if (!authorization) {
     res.status(401).json({ errors: ['login required'] });
     return;

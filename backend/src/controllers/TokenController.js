@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import { UserModel } from '../models/UserModel';
+
+let userModel = new UserModel();
 
 dotenv.config();
 
@@ -12,28 +14,27 @@ class TokenController {
       res.json({ errors: ['invalid login data, you should pass email and password'] });
     }
     try {
-      const user = await User.findOne({
-        where: { email },
-      });
-      if (!user) {
+      /* ver se usuario existe*/
+      const userExists = await userModel.userExists(email);
+      if (!userExists) {
         res.status(400);
         res.json({ errors: ['User does not exist'] });
         return;
       }
-      if (!(await user.isValidPass(password))) {
+      /*ver se a senha é válida*/
+      /*
         res.status(401).json({ errors: ['invalid password'] });
         return;
-      }
-      const id = user.getDataValue('id');
+      */
       const token = jwt.sign(
-        { id }, // payload
+        { email }, // payload
         process.env.TOKEN_SECRET, // secret
         { expiresIn: process.env.TOKEN_EXPIRATION }, // options object
       );
       res.status(200).json(token);
       return;
     } catch (e) {
-      res.status(500).send('server error');
+      res.status(500).send('server error' + e);
     }
   }
 }

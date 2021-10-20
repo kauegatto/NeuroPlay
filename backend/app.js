@@ -20,7 +20,7 @@ class App {
   }
 
   routes() {
-    //this.app.use('/tokens/', tokenRouter);
+    this.app.use('/tokens/', tokenRouter);
     //this.app.use('/user/', userRouter);
     this.app.use('/test/', testRouter);
   }
