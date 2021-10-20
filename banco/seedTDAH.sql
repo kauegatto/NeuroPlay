@@ -90,7 +90,7 @@ insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/
 
 /* MASSA DE TESTE VIDEO_PACIENTE */
 
-insert into vsideo_paciente values (1, 'brunooliveira11@gmail.com', 1, 1);
+insert into video_paciente values (1, 'brunooliveira11@gmail.com', 1, 1);
 insert into video_paciente values (2, 'brunooliveira11@gmail.com', 2, 1);
 insert into video_paciente values (3, 'thelmareis@hotmail.com', 1, 1);
 insert into video_paciente values (4, 'thelmareis@hotmail.com', null, 0);
