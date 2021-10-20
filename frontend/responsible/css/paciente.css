@@ -1,0 +1,45 @@
+.infoPaciente   
+{ 
+    width: 90%; 
+    height: 30px; 
+    background-color: #E1E1E1; 
+    border: 1px solid #000; 
+    border-radius: 7px;
+    margin: 3% 5%;
+}
+
+.NomePaciente 
+{
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+    margin: 5px 2%;
+    float: left;
+    width: 80%; 
+}
+
+.divCampo{
+    width: 60%;
+    margin: 40px auto;
+    display: block;
+}
+
+.divCampo label
+{
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.divCampo input 
+{
+    border-radius: 12px;
+    background-color: #FFCA94;
+    border: 0.6px solid #000000;
+    box-sizing: border-box;
+    width: 100%;
+}

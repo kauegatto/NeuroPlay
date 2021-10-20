@@ -64,15 +64,14 @@ h1{
 .content{
     width: 90%;
     margin: 0 auto;
-    border: 1px #000 solid; 
     min-height: 300px;
 }
 .contentBlock{
     width: 45%;
-    margin: 15px 2%;
+    margin: 15px 1.8%;
     min-height: 100px;
-    background-color: aqua;
     border-radius: 7px; 
+    border: 0.6px solid #000000;
     display: inline-block;
 }
 .contentText{
@@ -103,6 +102,9 @@ h1{
     border-radius: 10px;
     -webkit-text-stroke: 1.3px black;
 }
+
 #btnJogar{
     margin-top: 70px;
 }
+
+.clear { clear: both; }
