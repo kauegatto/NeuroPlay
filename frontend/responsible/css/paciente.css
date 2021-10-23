@@ -15,9 +15,10 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 17px;
-    margin: 5px 2%;
+    margin: 7px 2%;
     float: left;
     width: 80%; 
+    color: #000;
 }
 
 .divCampo{
