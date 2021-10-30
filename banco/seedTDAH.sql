@@ -99,4 +99,3 @@ insert into video_paciente values (2, 'henriquefreittas@outlook.com', null, 0);
 insert into video_paciente values (4, 'reginasilva@gmail.com', null, 0);
 insert into video_paciente values (5, 'reginasilva@gmail.com', null, 0);
 
-select * from paciente_atividade;
