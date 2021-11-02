@@ -7,8 +7,8 @@ const userRouter = new Router();
 
 userRouter.post('/create', userController.create);
 
+userRouter.get('/findPatients', loginRequired, userController.findAllPatients);
 /* 
-userRouter.get('/findPatients', loginRequired, userController.findAll);
 userRouter.get('/:id', loginRequired, userController.findOne);
 
 userRouter.put('/:id', loginRequired, userController.update);

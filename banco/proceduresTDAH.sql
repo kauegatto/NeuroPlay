@@ -159,7 +159,7 @@ Drop procedure if exists nomePaciente$$
 Create Procedure nomePaciente(vEmailUsuario varchar(200))
 begin
 
-	select nm_login_paciente, nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
+	select nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
 
 end$$
 

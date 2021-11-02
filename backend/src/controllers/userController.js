@@ -1,5 +1,9 @@
 import { UserModel } from "../models/UserModel";
+import { PatientModel } from "../models/PatientModel";
+
 let userModel = new UserModel();
+let patientModel = new PatientModel();
+
 class UserController {
   // create
   async create(req, res) {
@@ -63,6 +67,15 @@ class UserController {
       console.log(e);
       res.status(500).json({ error: ['server error'] });
     }
+  }
+
+  // listar todos os pacientes
+  async findAllPatients(req, res) {
+    const caralogado = req.loggedUser;
+    userModel.findAllFromUser(caralogado);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
   }
 }
 export default new UserController();

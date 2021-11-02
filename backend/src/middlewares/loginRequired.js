@@ -10,12 +10,12 @@ export default (req, res, next) => {
   }
   try {
     // eslint-disable-next-line no-unused-vars
-    const [text, token] = authorization.split(' ');
-    const data = jwt.verify(token, process.env.TOKEN_SECRET);
+    const data = jwt.verify(authorization, process.env.TOKEN_SECRET);
     const { email } = data;
     req.loggedUser = email;
   } catch (e) {
     res.status(401).json({ errors: ['Token inválido ou expirado.'] });
+    return;
   }
   next();
 };
