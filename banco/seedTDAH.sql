@@ -57,11 +57,11 @@ insert into tipo_usuario values (2, 'Administrador');
 /* MASSA DE TESTE USUARIO */
 
 /* Responsável */
-insert into usuario values ('pedro@gmail.com', '(13) 99689-1542', md5('123'), 'Pedro Henrique', 'Olá, eu sou pedro sou formado em pedagogia especializado em estratégias pedagógicas para alunos com TDAH', 1);
-insert into usuario values ('julio@hotmail.com', '(13) 99155-5052', md5('123'),  'Julio Cesar', 'Sou o Julio Cesar formado na área pedagógica e adoro trabalhar com crianças', 1);
+insert into usuario values ('pedro@gmail.com', '(13) 99689-1542', md5('123'), 'Pedro Henrique', 1);
+insert into usuario values ('julio@hotmail.com', '(13) 99155-5052', md5('123'),  'Julio Cesar', 1);
 /* ADM */
-insert into usuario values ('luciano@gmail.com', '(11) 99815-4740', md5('123'),  'Luciano Machado', null, 2);
-insert into usuario values ('maria@outlook.com', '(13) 99797-7433', md5('123'),  'Maria Helena', null, 2);
+insert into usuario values ('luciano@gmail.com', '(11) 99815-4740', md5('123'),  'Luciano Machado', 2);
+insert into usuario values ('maria@outlook.com', '(13) 99797-7433', md5('123'),  'Maria Helena', 2);
 
 /* MASSA DE TESTE PACIENTE */
 

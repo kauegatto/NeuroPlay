@@ -51,7 +51,6 @@ Create Table usuario
 	cd_telefone_usuario varchar(15),
 	nm_senha_usuario varchar(128),
 	nm_usuario varchar(200),
-	ds_usuario text,
 	cd_tipo_usuario int(11),
 	constraint primary key pk_email_usuario (nm_email_usuario),
 	constraint fk_tipo_usuario foreign key (cd_tipo_usuario) references tipo_usuario (cd_tipo_usuario)

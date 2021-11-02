@@ -10,8 +10,10 @@ class TokenController {
   async store(req, res) {
     const { email, password } = req.body;
     if (!(email && password)) {
+      /* conferir se mandou os 2 campos */
       res.status(400);
       res.json({ errors: ['Dados de login inválidos, você deve preencher ambos os campos'] });
+      return;
     }
     try {
       /* ver se usuario existe*/

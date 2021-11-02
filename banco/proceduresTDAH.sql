@@ -43,13 +43,13 @@ end$$
 Drop Procedure if exists inserirUsuario$$
 
 Create Procedure inserirUsuario(vEmailUsuario varchar(200), vSenhaUsuario varchar(128), 
-vTelefoneUsuario varchar(15), vNomeUsuario varchar(200), vDsUsuario text)
+vTelefoneUsuario varchar(15), vNomeUsuario varchar(200))
 begin
 
 insert into 
 	usuario
 values
-	(vEmailUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vNomeUsuario, vDsUsuario, 1);
+	(vEmailUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vNomeUsuario, 1);
 end$$
 
 /* Procedure que altera a senha do usuario*/

@@ -3,5 +3,7 @@ import TokenController from '../controllers/TokenController';
 
 const tokenRouter = new Router();
 
-tokenRouter.post('/', TokenController.store);
+tokenRouter.post('/login', TokenController.store);
+
 export default tokenRouter;
+

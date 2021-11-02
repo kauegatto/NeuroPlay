@@ -1,4 +1,6 @@
+/* esse arquivo faz uma conexão com o banco de dados usando a biblioteca mysql2 e a exporta*/
 const mysql = require('mysql2');
+
 async function main() {
     const mysql = require('mysql2/promise');
     // create the connection
@@ -10,4 +12,5 @@ async function main() {
     });
     export { connection };
 }
+
 main();

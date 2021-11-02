@@ -15,7 +15,7 @@ export default (req, res, next) => {
     const { id } = data;
     req.userId = id;
   } catch (e) {
-    res.status(401).json({ errors: ['Invalid or expired token'] });
+    res.status(401).json({ errors: ['Token inválido ou expirado.'] });
   }
   next();
 };
