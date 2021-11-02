@@ -20,7 +20,7 @@ class UserModel {
     }
   }
   async validateLogin(email, password) {
-    const query = `CALL LOGINPACIENTE('${email}','${password}');`;
+    const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
       const [rows, fields, err] = await connection.execute(query);
       /* rows tem 2 array: 1-> array dos resultados, json dentro, 2-> array de info do bd*/
