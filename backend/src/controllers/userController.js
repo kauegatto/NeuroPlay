@@ -72,10 +72,54 @@ class UserController {
   // listar todos os pacientes
   async findAllPatients(req, res) {
     const caralogado = req.loggedUser;
-    userModel.findAllFromUser(caralogado);
+    const response = await patientModel.findAllFromUser(caralogado);
     res.status(response[0]);
     res.json(response[1]);
     return;
   }
+
+  /* alterar dados*/
+  async changePassword(req, res) {
+    const caralogado = req.loggedUser;
+    const { oldPassword, newPassword } = req.body;
+    if (!(oldPassword && newPassword)) {
+      res.status(400).json({ "msg": "Preencha ambos os campos" });
+      return;
+    }
+    const response = await userModel.changePassword(caralogado, oldPassword, newPassword);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
+  }
+
+  async changePhoneNumber(req, res) {
+    const caralogado = req.loggedUser;
+    const { newPhoneNumber } = req.body;
+
+    if (!newPhoneNumber) {
+      res.status(400).json({ "msg": "Forneça um novo número de telefone" });
+      return;
+    }
+
+    const response = await userModel.changePhoneNumber(caralogado, newPhoneNumber);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
+  }
+
+  async changeUsername(req, res) {
+    const caralogado = req.loggedUser;
+    const { newUsername } = req.body;
+
+    if (!newUsername) {
+      res.status(400).json({ "msg": "Forneça um novo nome de usuário" });
+      return;
+    }
+    const response = await userModel.changeUsername(caralogado, newUsername);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
+  }
+
 }
 export default new UserController();

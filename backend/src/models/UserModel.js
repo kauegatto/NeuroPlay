@@ -23,9 +23,7 @@ class UserModel {
     const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
       const [rows, fields, err] = await connection.execute(query);
-      /* rows tem 2 array: 1-> array dos resultados, json dentro, 2-> array de info do bd*/
-      /* aqui, se a gente valida com rows[0] ele vai pegar o array vazio de json, então vai considerar que não é vazio pq tem um array vazio dentro!*/
-      /* por isso a validação aqui é usando rows[0][0], mas acho que no primeiro caso nao tem 2 retornos por causa do placeholder, nao sei ainda*/
+      /* rows 0;0 é p pegar exatamente os dados do primeiro resultado dos resultados, mas como só tem 1, vai dar certo*/
       if (rows[0][0] && !err) {
         return true;
       }
@@ -42,7 +40,7 @@ class UserModel {
       return [400, { "erro": "esse usuario já está cadastrado" }];
     }
     if (password.length < 8) {
-      return [400, "Sua senha precisa ter 8 caracteres"];
+      return [400, "Sua senha precisa ter ao menos 3 caracteres"];
     }
     const query = `CALL inserirUsuario('${email}','${password}','${phoneNumber}','${username}');`;
     try {
@@ -57,6 +55,60 @@ class UserModel {
     catch (e) {
       console.log(e);
       return [500, { "erro": "pane no sistema (coisa no banco)" }];
+    }
+  }
+  async changePassword(loggedUser, oldPassword, newPassword) {
+    if (!await this.validateLogin(loggedUser, oldPassword)) {
+      return [400, "Sua senha antiga está incorreta"];
+    }
+    if (newPassword.length < 3) {
+      return [400, "Sua senha precisa ter ao menos 3 caracteres"];
+    }
+    const query = `CALL alterarSenhaUsuario('${loggedUser}','${newPassword}');`;
+    try {
+      const [rows, fields, err] = await connection.execute(query);
+      if (!err) {
+        return [200, { "msg": "Senha alterada com sucesso" }];
+      }
+      else {
+        return [500, { "erro": "Erro!" }];
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return [500, { "erro": "Erro no banco" }];
+    }
+  }
+  async changePhoneNumber(loggedUser, newPhoneNumber) {
+    const query = `CALL alterarTelefoneUsuario('${loggedUser}','${newPhoneNumber}');`;
+    try {
+      const [rows, fields, err] = await connection.execute(query);
+      if (!err) {
+        return [200, { "msg": "Número de telefone sucesso" }];
+      }
+      else {
+        return [500, { "erro": "Erro!" }];
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return [500, { "erro": "Erro no banco" }];
+    }
+  }
+  async changeUsername(loggedUser, newUsername) {
+    const query = `CALL alterarNomeUsuario('${loggedUser}','${newUsername}');`;
+    try {
+      const [rows, fields, err] = await connection.execute(query);
+      if (!err) {
+        return [200, { "msg": "Nome de usuário alterado com sucesso" }];
+      }
+      else {
+        return [500, { "erro": "Erro!" }];
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return [500, { "erro": "Erro no banco" }];
     }
   }
 }

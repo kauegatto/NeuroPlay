@@ -8,6 +8,12 @@ const userRouter = new Router();
 userRouter.post('/create', userController.create);
 
 userRouter.get('/findPatients', loginRequired, userController.findAllPatients);
+
+userRouter.put('/changePassword', loginRequired, userController.changePassword);
+userRouter.put('/changePhoneNumber', loginRequired, userController.changePhoneNumber);
+userRouter.put('/changeUsername', loginRequired, userController.changeUsername);
+
+
 /* 
 userRouter.get('/:id', loginRequired, userController.findOne);
 
