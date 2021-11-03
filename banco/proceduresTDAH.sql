@@ -52,6 +52,21 @@ values
 	(vEmailUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vNomeUsuario, 1);
 end$$
 
+
+/* Procedure para inserir um novo paciente (cadastro) */
+
+Drop Procedure if exists inserirPaciente$$
+
+Create Procedure inserirPaciente(vLoginPaciente varchar(200), vSenhaPaciente varchar(128), 
+vNomePaciente varchar(200), vEmailUsuario varchar(200))
+begin
+
+insert into 
+	paciente
+values
+	(vLoginPaciente, md5(vSenhaPaciente), vEmailUsuario, vNomePaciente);
+end$$
+
 /* Procedure que altera a senha do usuario*/
 
 Drop procedure if exists alterarSenhaUsuario$$

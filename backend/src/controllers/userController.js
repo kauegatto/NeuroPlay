@@ -78,6 +78,7 @@ class UserController {
     return;
   }
 
+  /* alterar dados*/
   async changePassword(req, res) {
     const caralogado = req.loggedUser;
     const { oldPassword, newPassword } = req.body;
@@ -119,5 +120,6 @@ class UserController {
     res.json(response[1]);
     return;
   }
+
 }
 export default new UserController();
