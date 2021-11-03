@@ -5,7 +5,7 @@ class PatientModel {
     try {
       const [rows, fields, err] = await connection.execute(query);
       if (!err) {
-        return [200, rows[0][0]];
+        return [200, rows[0]];
       }
       else {
         return [400, { "msg": "Erro no banco" }];

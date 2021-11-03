@@ -9,7 +9,6 @@ export default (req, res, next) => {
     return;
   }
   try {
-    // eslint-disable-next-line no-unused-vars
     const data = jwt.verify(authorization, process.env.TOKEN_SECRET);
     const { email } = data;
     req.loggedUser = email;

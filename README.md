@@ -9,7 +9,7 @@ Project that focuses on games to help neurodivergent kids
 3. Run seeds (seedTDAH.sql)
 ### Run the backend:
 #### 1. Create a dotenv
-First of all you should put a .env file in order to make the tokens router work, you should setup it as it follows:
+First of all you should put a .env file in order to make the tokens router work, you may setup yours as it follows:
 ```
 TOKEN_SECRET=SENHASECRETA123 
 TOKEN_EXPIRATION=7d
