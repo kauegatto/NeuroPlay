@@ -309,12 +309,17 @@ Create procedure relatorioPaciente(vEmailPaciente varchar(200))
 begin
 
 	select 
-		nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificultade(vEmailPaciente) as menorDif,
-        maiorDificultade(vEmailPaciente) as maiorDif
-	from 
-		paciente 
+			p.nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificultade(vEmailPaciente) as menorDif,
+			maiorDificultade(vEmailPaciente) as maiorDif, timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
+			cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime)) as tempoDiff
+            
+			/* tempo medio por cada atividade  */ 
+            
+	from
+			paciente p join paciente_atividade pa
+			on p.nm_login_paciente = pa.nm_login_paciente
 	where 
-		nm_login_paciente = vEmailPaciente
+			p.nm_login_paciente = vEmailPaciente
 	group by
 		vEmailPaciente;
 
