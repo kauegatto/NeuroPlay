@@ -24,9 +24,9 @@ class LearnModel {
 
     }
 
-    async SelectedTheme(cdTema) {
+    async Videos(cdTema) {
 
-        const query = `CALL dadosAtividade('${cdTema}');`;
+        const query = `CALL videoPacienteTema('${cdTema}');`;
 
         try {
 
@@ -46,9 +46,9 @@ class LearnModel {
 
     }
 
-    async Video() {
+    async OneVideo(cdVideo) {
 
-        const query = `CALL videosPaciente();`;
+        const query = `CALL videoSelecionado('${cdVideo}');`;
 
         try {
 

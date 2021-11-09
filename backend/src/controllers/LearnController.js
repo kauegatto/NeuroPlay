@@ -6,29 +6,31 @@ class LearnController {
 
     async GetTheme(req, res) {
         const caralogado = req.loggedUser;
-        const response = await gamesModel.AllThemes();
+        const response = await learnModel.AllThemes();
         res.status(response[0]);
         res.json(response[1]);
         return;
     }
 
-    async FindOneTheme(req, res) {
+    async AlllVideosTheme(req, res) {
         const caralogado = req.loggedUser;
         const { id } = req.params;
-        const response = await gamesModel.SelectedTheme(id);
+        const response = await learnModel.Videos(id);
         res.status(response[0]);
         res.json(response[1]);
         return;
     }
 
-    async AlllVideos(req, res) {
+    async SelectedVideo(req, res) {
+
         const caralogado = req.loggedUser;
         const { id } = req.params;
-        const response = await learnModel.Video();
+        const response = await learnModel.OneVideo(id);
         res.status(response[0]);
         res.json(response[1]);
         return;
     }
+
 
 }
 

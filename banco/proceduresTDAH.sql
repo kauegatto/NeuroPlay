@@ -158,14 +158,25 @@ end$$
 
 /* procedure que retorna todos os dados da tabela video*/
 
-Drop procedure if exists videosPaciente$$
+Drop procedure if exists videoPacienteTema$$
 
-Create procedure videosPaciente()
+Create procedure videoPacienteTema(vCdTema int)
 begin
 
-	select * from video;
+	select cd_video, nm_video from video where cd_tema = vCdTema;
 
 end$$
+
+Drop procedure if exists videoSelecionado$$
+
+Create procedure videoSelecionado(vCdVideo int)
+begin
+
+	select nm_video, ds_conteudo_video, nm_link_video from video where cd_video = vCdVideo;
+ 
+end$$
+
+
 
 /* procedure que retorna o nome do paciente e email*/
 
