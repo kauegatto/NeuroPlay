@@ -24,6 +24,7 @@ jobs:
       - name: enters the backend, where node is located
         run:
           cd backend
+          ls
           
       - name: npm install, build, and test
         run: |
