@@ -1,7 +1,7 @@
 {
   "name": "rest_api",
   "version": "1.0.0",
-  "description": "``` pt-br",
+  "description": "pt-br",
   "main": "server.js",
   "type": "module",
   "scripts": {
