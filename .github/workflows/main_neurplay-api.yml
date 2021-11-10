@@ -23,6 +23,7 @@ jobs:
           
       - name: npm install, build
         run: |
+          cd backend
           npm install
 
       - name: Upload artifact for deployment job
