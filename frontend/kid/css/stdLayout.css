@@ -1,0 +1,110 @@
+body{
+    background-color: #F5F5F5;
+}
+p{  
+    color: #fff;
+    font-family: Fredoka One;
+    font-style: normal;
+    font-size:24px;
+    font-weight: normal;
+    text-align: center;
+    margin: 30px 30px;
+    -webkit-text-stroke: 1.3px black;
+}
+.footerIcon{
+    max-height: 35px;
+    margin: 0 auto;
+    display: block;
+}
+
+.logo{
+    margin: 0 auto;
+    padding: 15px 0;
+    display: block;
+}
+.footerText{
+    font-weight:400;
+    padding-bottom:1px;
+    margin:0;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    color: #FFFFFF;
+    -webkit-text-stroke: 1px black;
+
+  }
+.Footer{
+    padding-top:3px;
+    background-color: #54AAFF;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+}
+.Header{background-color: #54AAFF;}
+.Learn{
+    margin-top:5px;
+}
+.Leave{
+    margin-top:5px;
+}
+.Games{
+   margin-top:5px;
+}
+a{
+    text-decoration: none;
+}
+h1{
+    color: #646464;
+    font-family: Fredoka One;
+    font-size:28px;
+    font-weight: normal;
+    text-align: center;
+}
+.content{
+    width: 90%;
+    margin: 0 auto;
+    min-height: 300px;
+}
+.contentBlock{
+    width: 45%;
+    margin: 15px 1.8%;
+    min-height: 100px;
+    border-radius: 7px; 
+    border: 0.6px solid #000000;
+    display: inline-block;
+}
+.contentText{
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+    color: #FFFFFF;
+    -webkit-text-stroke: 1.3px black;
+}
+.contentHref{
+    height: 100%;
+    width: 100%;
+}
+.btnAmarelo{
+    width: 60%;
+    height: 60px;
+    margin: 0 auto;
+    display: block;
+    color: #fff;
+    font-family: Fredoka One;
+    font-style: normal;
+    font-size:24px;
+    font-weight: normal;
+    background-color: #FFBF54;
+    border-radius: 10px;
+    -webkit-text-stroke: 1.3px black;
+}
+
+#btnJogar{
+    margin-top: 70px;
+}
+
+.clear { clear: both; }
