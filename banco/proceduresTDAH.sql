@@ -217,7 +217,7 @@ Drop procedure if exists alterarNomePaciente$$
 Create Procedure alterarNomePaciente(vEmailPaciente varchar(200), vNomePaciente varchar(200))
 begin
 
-	update paciente set nm_paciente = vNomePaciente;
+	update paciente set nm_paciente = vNomePaciente where nm_login_paciente = vEmailPaciente;
 
 end$$
 
@@ -226,7 +226,7 @@ Drop procedure if exists alterarSenhaPaciente$$
 Create Procedure alterarSenhaPaciente(vEmailPaciente varchar(200), vSenhaPaciente varchar(128))
 begin
 
-	update paciente set nm_senha_paciente = vSenhaPaciente;
+	update paciente set nm_senha_paciente = md5(vSenhaPaciente) where nm_login_paciente = vEmailPaciente;
 
 end$$
 
