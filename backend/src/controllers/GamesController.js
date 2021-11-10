@@ -1,4 +1,4 @@
-import { GamesModel } from "../models/GamesModel";
+import { GamesModel } from "../models/GamesModel.js";
 
 const gamesModel = new GamesModel();
 

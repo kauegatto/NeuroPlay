@@ -13,10 +13,10 @@ $(document).on("click", "#btnEntrar", function () {
     .then(json => {
       console.log(json);
       if (json.code == 200) {
+        document.cookie = "authorization=" + json.token;
         alert("Logado com sucesso");
-        document.cookie = `authorization=${json.token}`;
-        alert(json.token);
-        window.location.href('../responsible/html/pacientes.html');
+        alert(document.cookie);
+        window.location.href = '../responsible/html/pacientes.html';
       }
       else {
         alert(json.msg);

@@ -1,11 +1,11 @@
-import loginRequired from '../middlewares/loginRequired';
-import userController from '../controllers/UserController';
+import loginRequired from '../middlewares/loginRequired.js';
+import userController from '../controllers/UserController.js';
 
 import { Router } from 'express';
 
 const userRouter = new Router();
 
-userRouter.post('/create', UserController.create);
+userRouter.post('/create', userController.create);
 
 userRouter.get('/findPatients', loginRequired, userController.findAllPatients);
 

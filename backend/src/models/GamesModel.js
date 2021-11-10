@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection';
+import { connection } from '../db/dbConnection.js';
 
 class GamesModel {
 

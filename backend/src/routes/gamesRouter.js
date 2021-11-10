@@ -1,5 +1,5 @@
-import GamesController from '../controllers/GamesController';
-import loginRequired from '../middlewares/loginRequired';
+import GamesController from '../controllers/GamesController.js';
+import loginRequired from '../middlewares/loginRequired.js';
 
 import { Router } from 'express';
 

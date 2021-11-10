@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import userRouter from './src/routes/userRouter';
-import tokenRouter from './src/routes/tokenRouter';
-import gamesRouter from './src/routes/gamesRouter';
-import learnRouter from './src/routes/learnRouter';
-import patientRouter from './src/routes/patientRouter';
+import userRouter from './src/routes/userRouter.js';
+import tokenRouter from './src/routes/tokenRouter.js';
+import gamesRouter from './src/routes/gamesRouter.js';
+import learnRouter from './src/routes/learnRouter.js';
+import patientRouter from './src/routes/patientRouter.js';
 
 dotenv.config();
 

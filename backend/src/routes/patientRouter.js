@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import PatientController from '../controllers/PatientController';
-import loginRequired from '../middlewares/loginRequired';
+import PatientController from '../controllers/PatientController.js';
+import loginRequired from '../middlewares/loginRequired.js';
 
 const patientRouter = new Router();
 

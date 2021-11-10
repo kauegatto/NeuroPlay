@@ -1,5 +1,5 @@
-import { UserModel } from "../models/UserModel";
-import { PatientModel } from "../models/PatientModel";
+import { UserModel } from "../models/UserModel.js";
+import { PatientModel } from "../models/PatientModel.js";
 
 let userModel = new UserModel();
 let patientModel = new PatientModel();

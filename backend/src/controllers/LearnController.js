@@ -1,4 +1,4 @@
-import { LearnModel } from "../models/LearnModel";
+import { LearnModel } from "../models/LearnModel.js";
 
 const learnModel = new LearnModel();
 

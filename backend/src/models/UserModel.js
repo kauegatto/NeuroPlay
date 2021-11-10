@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection';
+import { connection } from '../db/dbConnection.js';
 class UserModel {
   async userExists(email) {
     const query = 'SELECT * FROM usuario WHERE nm_email_usuario = ?;';
@@ -97,7 +97,7 @@ class UserModel {
       return [500, { "msg": "Erro no banco" }];
     }
   }
-  
+
   async changeUsername(loggedUser, newUsername) {
     const query = `CALL alterarNomeUsuario('${loggedUser}','${newUsername}');`;
     try {

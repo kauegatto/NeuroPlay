@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../models/UserModel';
+import { UserModel } from '../models/UserModel.js';
 
 let userModel = new UserModel();
 

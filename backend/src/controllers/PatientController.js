@@ -1,4 +1,4 @@
-import { PatientModel } from "../models/PatientModel";
+import { PatientModel } from "../models/PatientModel.js";
 let patientModel = new PatientModel();
 
 class PatientController {

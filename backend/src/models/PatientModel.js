@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection';
+import { connection } from '../db/dbConnection.js';
 class PatientModel {
   async patientExists(login) {
     const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ?;';
