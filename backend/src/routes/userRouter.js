@@ -7,11 +7,11 @@ const userRouter = new Router();
 
 userRouter.post('/create', UserController.create);
 
-userRouter.get('/findPatients', loginRequired, UserController.findAllPatients);
+userRouter.get('/findPatients', loginRequired, userController.findAllPatients);
 
-userRouter.put('/changePassword', loginRequired, UserController.changePassword);
-userRouter.put('/changePhoneNumber', loginRequired, UserController.changePhoneNumber);
-userRouter.put('/changeUsername', loginRequired, UserController.changeUsername);
+userRouter.put('/changePassword', loginRequired, userController.changePassword);
+userRouter.put('/changePhoneNumber', loginRequired, userController.changePhoneNumber);
+userRouter.put('/changeUsername', loginRequired, userController.changeUsername);
 
 
 /* 
