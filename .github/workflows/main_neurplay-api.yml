@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'neurplay-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_01447E25796541B3BF2D95AE0C2DA408 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA2AC24C266745EA852FB8F1687B0801 }}
           package: .
