@@ -19,6 +19,6 @@ DB_PASS=root
 ```
 #### 2. Run:
 1. Enter the backend folder
-2. Run npm i in order to get dependencies
-3. Run npm run dev.
+2. Run ```npm i``` in order to get dependencies
+3. Run ```npm run dev```.
 Obs : You should run it in node 14.x version, which is what we used in the backend deploy on Azure and know it works fine.
