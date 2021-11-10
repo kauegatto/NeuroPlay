@@ -9,10 +9,11 @@ dotenv.config();
 class TokenController {
   async store(req, res) {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!(email && password)) {
       /* conferir se mandou os 2 campos */
       res.status(400);
-      res.json({ errors: ['Dados de login inválidos, você deve preencher ambos os campos'] });
+      res.json({ msg: ['Dados de login inválidos, você deve preencher ambos os campos'] });
       return;
     }
     try {
@@ -20,13 +21,13 @@ class TokenController {
       const userExists = await userModel.userExists(email);
       if (!userExists) {
         res.status(400);
-        res.json({ errors: ['Usuário não existe'] });
+        res.json({ msg: ['Usuário não existe'] });
         return;
       }
       /*ver se a senha é válida*/
       const validPass = await userModel.validateLogin(email, password);
       if (!validPass) {
-        res.status(401).json({ errors: ['Senha inválida'] });
+        res.status(401).json({ msg: ['Senha inválida'] });
         return;
       }
       const token = jwt.sign(
@@ -34,7 +35,7 @@ class TokenController {
         process.env.TOKEN_SECRET, // secret
         { expiresIn: process.env.TOKEN_EXPIRATION }, // options object
       );
-      res.status(200).json(token);
+      res.status(200).json({ "code": 200, "token": token });
       return;
     } catch (e) {
       res.status(500).send('server error' + e);

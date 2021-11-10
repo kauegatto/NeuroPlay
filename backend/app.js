@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import userRouter from './src/routes/userRouter';
 import tokenRouter from './src/routes/tokenRouter';
 import gamesRouter from './src/routes/gamesRouter';
@@ -17,6 +18,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(cors());
   }
   routes() {
     this.app.use('/tokens/', tokenRouter);

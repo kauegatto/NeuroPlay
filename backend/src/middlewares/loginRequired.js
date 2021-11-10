@@ -13,7 +13,7 @@ export default (req, res, next) => {
     const { email } = data;
     req.loggedUser = email;
   } catch (e) {
-    res.status(401).json({ errors: ['Token inválido ou expirado.'] });
+    res.status(498).json({ errors: ['Token inválido ou expirado.'] });
     return;
   }
   next();

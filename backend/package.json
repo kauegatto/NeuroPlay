@@ -15,13 +15,14 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "sucrase": "^3.20.0",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sucrase": "^3.20.0"
   }
 }

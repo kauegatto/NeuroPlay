@@ -14,12 +14,12 @@ class LearnModel {
                 return [200, { "msg": rows[0] }];
             }
             else {
-                return [500, { "erro": "coisa no banco" }];
+                return [500, { "msg": "coisa no banco" }];
             }
         }
         catch (e) {
             console.log(e);
-            return [500, { "erro": "pane no sistema (coisa no banco)" }];
+            return [500, { "msg": "pane no sistema (coisa no banco)" }];
         }
 
     }
@@ -36,12 +36,12 @@ class LearnModel {
                 return [200, { "msg": rows[0] }];
             }
             else {
-                return [500, { "erro": "coisa no banco" }];
+                return [500, { "msg": "coisa no banco" }];
             }
         }
         catch (e) {
             console.log(e);
-            return [500, { "erro": "pane no sistema (coisa no banco)" }];
+            return [500, { "msg": "pane no sistema (coisa no banco)" }];
         }
 
     }
@@ -58,12 +58,12 @@ class LearnModel {
                 return [200, { "msg": rows[0] }];
             }
             else {
-                return [500, { "erro": "coisa no banco" }];
+                return [500, { "msg": "coisa no banco" }];
             }
         }
         catch (e) {
             console.log(e);
-            return [500, { "erro": "pane no sistema (coisa no banco)" }];
+            return [500, { "msg": "pane no sistema (coisa no banco)" }];
         }
 
     }

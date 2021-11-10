@@ -37,7 +37,7 @@ class UserModel {
   }
   async createUser(email, password, phoneNumber, username) {
     if (await this.userExists(email)) {
-      return [400, { "erro": "esse usuario já está cadastrado" }];
+      return [400, { "msg": "esse usuario já está cadastrado" }];
     }
     if (password.length < 8) {
       return [400, "Sua senha precisa ter ao menos 3 caracteres"];
@@ -49,12 +49,12 @@ class UserModel {
         return [200, { "msg": "usuario criado" }];
       }
       else {
-        return [500, { "erro": "coisa no banco" }];
+        return [500, { "msg": "coisa no banco" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "pane no sistema (coisa no banco)" }];
+      return [500, { "msg": "pane no sistema (coisa no banco)" }];
     }
   }
   async changePassword(loggedUser, oldPassword, newPassword) {
@@ -71,12 +71,12 @@ class UserModel {
         return [200, { "msg": "Senha alterada com sucesso" }];
       }
       else {
-        return [500, { "erro": "Erro!" }];
+        return [500, { "msg": "Erro!" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "Erro no banco" }];
+      return [500, { "msg": "Erro no banco" }];
     }
   }
   async changePhoneNumber(loggedUser, newPhoneNumber) {
@@ -87,12 +87,12 @@ class UserModel {
         return [200, { "msg": "Número de telefone sucesso" }];
       }
       else {
-        return [500, { "erro": "Erro!" }];
+        return [500, { "msg": "Erro!" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "Erro no banco" }];
+      return [500, { "msg": "Erro no banco" }];
     }
   }
   async changeUsername(loggedUser, newUsername) {
@@ -103,12 +103,12 @@ class UserModel {
         return [200, { "msg": "Nome de usuário alterado com sucesso" }];
       }
       else {
-        return [500, { "erro": "Erro!" }];
+        return [500, { "msg": "Erro!" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "Erro no banco" }];
+      return [500, { "msg": "Erro no banco" }];
     }
   }
 }
