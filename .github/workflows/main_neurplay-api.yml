@@ -20,12 +20,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-
-      - name: npm install, build, and test
+          
+      - name: npm install, build
         run: |
+          cd backend
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build 
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'neurplay-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_01447E25796541B3BF2D95AE0C2DA408 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA2AC24C266745EA852FB8F1687B0801 }}
           package: .

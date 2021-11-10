@@ -57,6 +57,7 @@ class UserModel {
       return [500, { "msg": "pane no sistema (coisa no banco)" }];
     }
   }
+
   async changePassword(loggedUser, oldPassword, newPassword) {
     if (!await this.validateLogin(loggedUser, oldPassword)) {
       return [400, "Sua senha antiga está incorreta"];
@@ -79,6 +80,7 @@ class UserModel {
       return [500, { "msg": "Erro no banco" }];
     }
   }
+
   async changePhoneNumber(loggedUser, newPhoneNumber) {
     const query = `CALL alterarTelefoneUsuario('${loggedUser}','${newPhoneNumber}');`;
     try {
@@ -95,6 +97,7 @@ class UserModel {
       return [500, { "msg": "Erro no banco" }];
     }
   }
+  
   async changeUsername(loggedUser, newUsername) {
     const query = `CALL alterarNomeUsuario('${loggedUser}','${newUsername}');`;
     try {
