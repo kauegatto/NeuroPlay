@@ -26,7 +26,7 @@ class App {
     this.app.use('/games/', gamesRouter);
     this.app.use('/learn', learnRouter);
     this.app.use('/patient/', patientRouter);
-
+    this.app.get('/', (req, res) => res.send("Hello world!"));
   }
 }
 export default new App().app; // já exporta instanciado o express (App.app)
