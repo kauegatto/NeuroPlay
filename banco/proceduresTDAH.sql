@@ -185,7 +185,7 @@ Drop procedure if exists nomePaciente$$
 Create Procedure nomePaciente(vEmailUsuario varchar(200))
 begin
 
-	select nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
+	select nm_login_paciente, nm_paciente from paciente where nm_email_usuario = vEmailUsuario;
 
 end$$
 
@@ -210,16 +210,26 @@ begin
 
 end$$
 
-/* procedure que altera dados de um paciente*/
+/* procedure que altera nome de um paciente*/
 
-Drop procedure if exists alterarDadosPaciente$$
+Drop procedure if exists alterarNomePaciente$$
 
-Create Procedure alterarDadosPaciente(vEmailPaciente varchar(200), vNomePaciente varchar(200))
+Create Procedure alterarNomePaciente(vEmailPaciente varchar(200), vNomePaciente varchar(200))
 begin
 
 	update paciente set nm_paciente = vNomePaciente;
 
 end$$
+
+Drop procedure if exists alterarSenhaPaciente$$
+
+Create Procedure alterarSenhaPaciente(vEmailPaciente varchar(200), vSenhaPaciente varchar(128))
+begin
+
+	update paciente set nm_senha_paciente = vSenhaPaciente;
+
+end$$
+
 
 /* Função que retorna a quantidade de atividades que um paciente realizou*/
 
@@ -331,7 +341,7 @@ Create procedure atividadeRealizada(vEmailPaciente varchar(200))
 begin
  
 	select 
-		a.cd_atividade, date_format(pa.dt_realizacao, '%d/%m/%Y'), a.nm_atividade
+		a.cd_atividade, date_format(pa.dt_inicio, '%d/%m/%Y'), a.nm_atividade
 	from 
 		atividade a 
 	join
@@ -346,12 +356,14 @@ end$$
 
 Drop procedure if exists detalhesAtividade$$
 
-Create procedure detalhesAtividade(vCdAtividade int, vEmailPaciente varchar(200))
+Create procedure detalhesAtividade(vEmailPaciente varchar(200))
 begin
  
 	select 
-		a.cd_atividade, date_format(pa.dt_realizacao, '%d/%m/%Y'), a.nm_atividade, 
-        pa.ic_terminou, t.nm_tema, ta.nm_avaliacao, tatv.ic_tem_nota
+		a.cd_atividade, date_format(pa.dt_inicio, '%d/%m/%Y') as dataInicio, 
+        date_format(pa.dt_fim, '%d/%m/%Y') as dataFim, timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
+		cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime)) as tempoDiff,
+        a.nm_atividade, t.nm_tema, ta.nm_avaliacao, tatv.ic_tem_nota
 	from 
 		atividade a 
 	join
@@ -370,8 +382,7 @@ begin
 		tipo_atividade tatv
 	on
 		(tatv.cd_tipo_atividade = a.cd_tipo_atividade)
-	where
-		pa.cd_atividade = vCdAtividade and nm_login_paciente = vEmailPaciente;
+	where nm_login_paciente = vEmailPaciente;
 end$$
 
 Delimiter ;
