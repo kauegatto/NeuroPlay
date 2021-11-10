@@ -22,7 +22,7 @@ jobs:
           node-version: '14.x'
           
       - name: enters the backend, where node is located
-        run:
+        run: |
           cd backend
           ls
           
