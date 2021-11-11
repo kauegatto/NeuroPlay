@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection.js';
+import dbConnection from '../db/DbConnection.js';
 class PatientModel {
   async patientExists(login) {
     const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ?;';
@@ -6,7 +6,9 @@ class PatientModel {
     http://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks
     */
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query, [login]);
+      dbConnection.closeConnection(connection);
       if (rows[0] && !err) {
         return true;
       }
@@ -22,7 +24,9 @@ class PatientModel {
   async findAllFromUser(email) {
     const query = `call nomePaciente('${email}')`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, rows[0]];
       }
@@ -42,7 +46,9 @@ class PatientModel {
     }
     const query = `call inserirPaciente('${login}','${password}','${name}','${loggedUser}')`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "Paciente criado com sucesso" }];
       }
@@ -60,9 +66,9 @@ class PatientModel {
     const query = `call relatorioPaciente('${email}')`;
 
     try {
-
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
-
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": rows[0] }];
       }
@@ -81,9 +87,9 @@ class PatientModel {
 
     const query = `call detalhesAtividade('${email}')`;
     try {
-
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
-
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": rows[0] }];
       }
@@ -106,7 +112,9 @@ class PatientModel {
 
     const query = `CALL alterarSenhaPaciente('${emailPatient}', '${newPassword}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "Senha alterada com sucesso" }];
       }
@@ -123,7 +131,9 @@ class PatientModel {
   async changePatientName(emailPatient, newPatientname) {
     const query = `CALL alterarNomePaciente('${emailPatient}','${newPatientname}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "Nome de usuário alterado com sucesso" }];
       }

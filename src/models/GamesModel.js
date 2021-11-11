@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection.js';
+import dbConnection from '../db/DbConnection.js'; /*instancia de dbConnection*/
 
 class GamesModel {
 
@@ -7,9 +7,9 @@ class GamesModel {
         const query = `CALL dadosTema();`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -29,9 +29,9 @@ class GamesModel {
         const query = `CALL dadosAtividade('${cdTema}');`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -51,9 +51,9 @@ class GamesModel {
         const query = `CALL dadosAtividadeEscolhida('${cdAtividade}');`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
