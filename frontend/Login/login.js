@@ -8,6 +8,7 @@ $(document).on("click", "#btnEntrar", function () {
     //headers: { "authentication": cookies.authentication },
     body: JSON.stringify({ "email": $("#emailInput").val(), "password": $("#passwordInput").val() }),
   };
+
   fetch(URL, options)
     .then(response => (response.json()))
     .then(json => {

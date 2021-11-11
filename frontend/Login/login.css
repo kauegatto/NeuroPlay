@@ -75,3 +75,8 @@ input{
     border-radius: 10px;
     -webkit-text-stroke: 1.5px black;
 }
+
+.cbxLogin {
+     width: 10%;
+     height: 15px;
+}
