@@ -4,13 +4,17 @@ import dotenv from 'dotenv';
 let connection;
 async function main() {
     // create the connection
-    connection = await mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: 'prjtdah'
-    });
-
+    try {
+        connection = await mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_DEFAULTDATABASE
+        });
+    }
+    catch (e) {
+        console.log("connection with database was refused");
+    }
 }
 main();
 export { connection };
