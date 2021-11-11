@@ -1,15 +1,14 @@
-import { connection } from '../db/dbConnection.js';
+import dbConnection from '../db/DbConnection.js';
 
 class LearnModel {
 
     async AllThemes() {
-
         const query = `CALL dadosTema();`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -29,9 +28,9 @@ class LearnModel {
         const query = `CALL videoPacienteTema('${cdTema}');`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -51,9 +50,9 @@ class LearnModel {
         const query = `CALL videoSelecionado('${cdVideo}');`;
 
         try {
-
+            const connection = await dbConnection.openConnection();
             const [rows, fields, err] = await connection.execute(query);
-
+            dbConnection.closeConnection(connection);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }

@@ -1,4 +1,4 @@
-import { connection } from '../db/dbConnection.js';
+import dbConnection from '../db/DbConnection.js';
 class UserModel {
   async userExists(email) {
     const query = 'SELECT * FROM usuario WHERE nm_email_usuario = ?;';
@@ -6,7 +6,9 @@ class UserModel {
     http://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks
     */
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query, [email]);
+      dbConnection.closeConnection(connection);
       if (rows[0] && !err) {
         return true;
       }
@@ -22,7 +24,9 @@ class UserModel {
   async validateLogin(email, password) {
     const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       /* rows 0;0 é p pegar exatamente os dados do primeiro resultado dos resultados, mas como só tem 1, vai dar certo*/
       if (rows[0][0] && !err) {
         return true;
@@ -44,7 +48,9 @@ class UserModel {
     }
     const query = `CALL inserirUsuario('${email}','${password}','${phoneNumber}','${username}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "usuario criado" }];
       }
@@ -67,7 +73,9 @@ class UserModel {
     }
     const query = `CALL alterarSenhaUsuario('${loggedUser}','${newPassword}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "Senha alterada com sucesso" }];
       }
@@ -84,7 +92,10 @@ class UserModel {
   async changePhoneNumber(loggedUser, newPhoneNumber) {
     const query = `CALL alterarTelefoneUsuario('${loggedUser}','${newPhoneNumber}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
+
       if (!err) {
         return [200, { "msg": "Número de telefone sucesso" }];
       }
@@ -101,7 +112,9 @@ class UserModel {
   async changeUsername(loggedUser, newUsername) {
     const query = `CALL alterarNomeUsuario('${loggedUser}','${newUsername}');`;
     try {
+      const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
       if (!err) {
         return [200, { "msg": "Nome de usuário alterado com sucesso" }];
       }
