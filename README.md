@@ -16,6 +16,7 @@ TOKEN_EXPIRATION=7d
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=root
+DB_DEFAULTDATABASE=neuroplay-db
 ```
 #### 2. Run:
 1. Enter the backend folder
