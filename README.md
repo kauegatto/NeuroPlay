@@ -27,6 +27,8 @@ DB_DEFAULTDATABASE=neuroplay-db
 3. Run ```npm run dev``` para que o arquivo atualize sempre que você mudar algo no backend ou ```npm run start``` para que ele só rode de novo quando você rodar esse comando novamente.
 Obs : Esse projeto foi testado com o node 14.x na azure e 17.x localmente (usando sucrase). A versão 14.x é recomendada pois foi a última que testamos as implementações desse backend, contudo, a portabilidade não deve ser difícil tendo em vista que o funcionamento das bibliotecas não parece afetado.
 
+#### 1.2.3 Saiba o que você pode fazer:
+A documentação das rotas pode ser encontrada na [página da wiki deste projeto](https://github.com/kauegatto/NeuroPlay/wiki) aqui no github.
 ## 2. Obs:
 O backend do projeto foi publicado na azure como um appservice, por isso dividimos as branches de tal forma, a fim de evitar _triggers_ desnecessários no github actions. A implementação pode não funcionar corretamente na AWS, cheque se eles usam variáveis de ambiente de maneira diferente ou afins, sempre confirme também o estado do banco de dados remoto. 
 
@@ -59,6 +61,8 @@ DB_DEFAULTDATABASE=neuroplay-db
 3. Run ```npm run dev```.
 P.S: We've tested node 17.x locally( we were also using sucrase ) and node 14.x on azure, which was the version we've made most tests on and we reccomend. 
 
+#### 1.2.3 Know what you can do:
+The documentation for the routes can be found in the [project's wiki page](https://github.com/kauegatto/NeuroPlay/wiki) here on github.
 ### 2.0 P.S :
 The backend for this project was deployed on microsoft azure as an appservice, which is why we divided the branches in the way it is, therefore avoiding unnecessary triggers on the github actions. That being said, a future implementation on AWS might not work as intented, I'd recommend you checking for the environment variables there and for the remote-db state.
 
