@@ -34,7 +34,7 @@ class TokenController {
         process.env.TOKEN_SECRET, // secret
         { expiresIn: process.env.TOKEN_EXPIRATION }, // options object
       );
-      res.status(200).json({ "code": 200, "token": token });
+      res.status(200).json({ "token": token });
       return;
     } catch (e) {
       res.status(500).send('server error' + e);
