@@ -187,6 +187,16 @@ begin
 
 end$$
 
+Drop procedure if exists getNomePaciente$$
+
+Create Procedure getNomePaciente(vLoginPaciente varchar(200))
+begin
+
+	select nm_paciente from paciente where nm_login_paciente = vLoginPaciente;
+
+end$$
+
+
 Drop procedure if exists dadosPaciente$$
 
 Create procedure dadosPaciente()
