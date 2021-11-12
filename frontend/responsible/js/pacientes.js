@@ -21,7 +21,8 @@ $(document).ready(function () {
   }).then(json => {
     if (!deuErro) {
       json.forEach(element => {
-        let patient = `<div class="infoPaciente" > <a href="relatorioPaciente.html"><span class="NomePaciente">${element.nm_paciente}</span></a> <a href="alterarDadosPaciente.html"><img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left;"></a> <img src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
+        console.log(element);
+        let patient = `<div class="infoPaciente" > <a href="relatorioPaciente.html"><span class="NomePaciente">${element.nm_paciente}</span></a> <a href="alterarDadosPaciente.html?login=${element.nm_login_paciente}"><img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left;"></a> <img src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
         $('.content').append(patient);
       });
     }

@@ -1,5 +1,3 @@
-SET GLOBAL log_bin_trust_function_creators = 1;
-
 Delimiter $$
 
 /* Procedure para login do usuario */
@@ -208,6 +206,15 @@ begin
 	delete from video_paciente where nm_login_paciente = vEmailPaciente;
 	delete from paciente where nm_login_paciente = vEmailPaciente;
 
+end$$
+/*altera tudo de um paciente*/
+Drop procedure if exists alterarDadosPaciente$$
+Create Procedure alterarDadosPaciente(vLoginPaciente varchar(200), vSenhaPaciente varchar(128), vNomePaciente varchar(128))
+begin
+	update paciente set 
+    nm_senha_paciente = md5(vSenhaPaciente),
+    nm_paciente = vNomePaciente
+    where nm_login_paciente = vLoginPaciente;
 end$$
 
 /* procedure que altera nome de um paciente*/
