@@ -4,7 +4,7 @@ let patientModel = new PatientModel();
 class PatientController {
   /* criar novo paciente */
   async createPatient(req, res) {
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { login, name, password } = req.body;
 
     if (!(login && name && password)) {
@@ -12,14 +12,14 @@ class PatientController {
       return;
     }
 
-    const response = await patientModel.createPatient(name, login, password, caralogado);
+    const response = await patientModel.createPatient(name, login, password, loggedUser);
     res.status(response[0]);
     res.json(response[1]);
     return;
   }
 
   async findAllFromUser(req, res) {
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { email } = req.params;
     const response = await patientModel.findAllFromUser(email);
     res.status(response[0]);
@@ -28,7 +28,7 @@ class PatientController {
   }
 
   async patientReport(req, res) {
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { email } = req.params;
     const response = await patientModel.patientReport(email);
     res.status(response[0]);
@@ -37,7 +37,7 @@ class PatientController {
   }
 
   async activityDetails(req, res) {
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { email } = req.params;
     const response = await patientModel.activityDetails(email);
     res.status(response[0]);
@@ -47,7 +47,7 @@ class PatientController {
 
   async changePassword(req, res) {
 
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { email } = req.params;
     const { newPassword } = req.body;
 
@@ -65,7 +65,7 @@ class PatientController {
 
   async changePatientName(req, res) {
 
-    const caralogado = req.loggedUser;
+    const loggedUser = req.loggedUser;
     const { email } = req.params;
     const { newPatientName } = req.body;
 

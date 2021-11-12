@@ -9,7 +9,6 @@ dotenv.config();
 class TokenController {
   async store(req, res) {
     const { email, password } = req.body;
-    console.log(req.body);
     if (!(email && password)) {
       /* conferir se mandou os 2 campos */
       res.status(400);
