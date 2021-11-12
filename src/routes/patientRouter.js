@@ -10,6 +10,6 @@ patientRouter.get('/report/:email', loginRequired, PatientController.patientRepo
 patientRouter.get('/details/:email', loginRequired, PatientController.activityDetails);
 patientRouter.put('/changePassword/:email', loginRequired, PatientController.changePassword);
 patientRouter.put('/changePatientName/:email', loginRequired, PatientController.changePatientName);
-
+patientRouter.put('/', loginRequired, PatientController.updatePatient);
 export default patientRouter;
 

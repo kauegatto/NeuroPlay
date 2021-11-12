@@ -73,12 +73,12 @@ class PatientModel {
         return [200, { "msg": rows[0] }];
       }
       else {
-        return [500, { "erro": "coisa no banco" }];
+        return [500, { "msg": "coisa no banco" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "pane no sistema (coisa no banco)" }];
+      return [500, { "msg": "pane no sistema (coisa no banco)" }];
     }
 
   }
@@ -94,12 +94,12 @@ class PatientModel {
         return [200, { "msg": rows[0] }];
       }
       else {
-        return [500, { "erro": "coisa no banco" }];
+        return [500, { "msg": "coisa no banco" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "pane no sistema (coisa no banco)" }];
+      return [500, { "msg": "pane no sistema (coisa no banco)" }];
 
     }
   }
@@ -119,12 +119,12 @@ class PatientModel {
         return [200, { "msg": "Senha alterada com sucesso" }];
       }
       else {
-        return [500, { "erro": "Erro!" }];
+        return [500, { "msg": "Erro!" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "Erro no banco" }];
+      return [500, { "msg": "Erro no banco" }];
     }
   }
 
@@ -138,12 +138,29 @@ class PatientModel {
         return [200, { "msg": "Nome de usuário alterado com sucesso" }];
       }
       else {
-        return [500, { "erro": "Erro!" }];
+        return [500, { "msg": "Erro!" }];
       }
     }
     catch (e) {
       console.log(e);
-      return [500, { "erro": "Erro no banco" }];
+      return [500, { "msg": "Erro no banco" }];
+    }
+  }
+  async updatePatientData(patientLogin, loggedUser, newPassword, newUsername) {
+    let isResponsible = 1; //alterar, ver se o cara logado tem permissao e pa
+    if (!isResponsible) {
+      return [401, { "msg": "Você não tem autorização para trocar dados de pacientes que não são seus" }];
+    }
+    try {
+      const query = `CALL alterarDadosPaciente('${patientLogin}','${newPassword}','${newUsername}');`;
+      const connection = await dbConnection.openConnection();
+      const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
+      return [200, { "msg": "Dados alterados com sucesso" }];
+    }
+    catch (e) {
+      console.log(e);
+      return [500, { "msg": "Erro no banco" }];
     }
   }
 

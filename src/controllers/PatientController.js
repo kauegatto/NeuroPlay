@@ -80,6 +80,22 @@ class PatientController {
     return;
 
   }
-
+  async updatePatient(req, res) {
+    const loggedUser = req.loggedUser;
+    const { login } = req.query;
+    const { newPassword, newUsername } = req.body;
+    if (!login) {
+      res.status(400).json({ msg: "Você precisa especificar um paciente para altera-lo" });
+      return;
+    }
+    if (!(newPassword && newUsername)) {
+      res.status(400).json({ msg: "Você não pode deixar os campos vazios!" });
+      return;
+    }
+    const response = await patientModel.updatePatientData(login, loggedUser, newPassword, newUsername);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
+  }
 }
 export default new PatientController();
