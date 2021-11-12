@@ -18,10 +18,10 @@ class PatientController {
     return;
   }
 
-  async findAllFromUser(req, res) {
+  async getPatientName(req, res) {
     const loggedUser = req.loggedUser;
-    const { email } = req.params;
-    const response = await patientModel.findAllFromUser(email);
+    const { login } = req.params;
+    const response = await patientModel.getPatientName(login);
     res.status(response[0]);
     res.json(response[1]);
     return;

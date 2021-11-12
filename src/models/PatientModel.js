@@ -21,14 +21,14 @@ class PatientModel {
       return false;
     }
   }
-  async findAllFromUser(email) {
-    const query = `call nomePaciente('${email}')`;
+  async getPatientName(login) {
+    const query = `call getNomePaciente('${login}')`;
     try {
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
       dbConnection.closeConnection(connection);
       if (!err) {
-        return [200, rows[0]];
+        return [200, rows[0][0]];
       }
       else {
         return [400, { "msg": "Erro no banco" }];
