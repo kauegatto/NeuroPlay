@@ -72,9 +72,7 @@ Thank you 😄
 
 # Authors: 
 <div>
-Douglas Reis - Kaue Gatto 
-
-
+Douglas Reis - Kaue Gatto<br/>
 <img src="https://avatars.githubusercontent.com/u/59988180?v=4" alt="picture of Douglas Reis" width="100"/>
 <img src="https://avatars.githubusercontent.com/u/13698473?v=4" alt="picture of Kaue Gatto" width="100"/>
 </div>
