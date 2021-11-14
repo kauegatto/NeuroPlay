@@ -104,13 +104,32 @@ class PatientModel {
     }
   }
 
-  async changePassword(emailPatient, newPassword) {
+  async findAllFromUser(email) {
+    const query = `call nomePaciente('${email}')`;
+    try {
+      const connection = await dbConnection.openConnection();
+      const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
+      if (!err) {
+        return [200, rows[0]];
+      }
+      else {
+        return [400, { "msg": "Erro no banco" }];
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return [400, { "msg": "Erro no banco" }];
+    }
+  }
+
+  async changePassword(patientLogin, newPassword) {
 
     if (newPassword.length < 3) {
       return [400, "Sua senha precisa ter ao menos 3 caracteres"];
     }
 
-    const query = `CALL alterarSenhaPaciente('${emailPatient}', '${newPassword}');`;
+    const query = `CALL alterarSenhaPaciente('${patientLogin}', '${newPassword}');`;
     try {
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
@@ -128,8 +147,8 @@ class PatientModel {
     }
   }
 
-  async changePatientName(emailPatient, newPatientname) {
-    const query = `CALL alterarNomePaciente('${emailPatient}','${newPatientname}');`;
+  async changePatientName(patientLogin, newPatientname) {
+    const query = `CALL alterarNomePaciente('${patientLogin}','${newPatientname}');`;
     try {
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);

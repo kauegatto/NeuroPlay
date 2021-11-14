@@ -46,39 +46,31 @@ class PatientController {
   }
 
   async changePassword(req, res) {
-
-    const loggedUser = req.loggedUser;
-    const { email } = req.params;
+    const loggedUser = req.loggedUser; /* tem q vlidar se o cara pode realmente mudar ne*/
+    const { login } = req.params;
     const { newPassword } = req.body;
-
     if (!newPassword) {
       res.status(400).json({ "msg": "Preencha sua nova senha" });
       return;
     }
-
-    const response = await patientModel.changePassword(email, newPassword);
+    const response = await patientModel.changePassword(login, newPassword);
     res.status(response[0]);
     res.json(response[1]);
     return;
-
   }
 
   async changePatientName(req, res) {
-
-    const loggedUser = req.loggedUser;
-    const { email } = req.params;
-    const { newPatientName } = req.body;
-
-    if (!newPatientName) {
-      res.status(400).json({ "msg": "Preencha o seu nome" });
+    const loggedUser = req.loggedUser; /* tem q vlidar se o cara pode realmente mudar ne*/
+    const { login } = req.params;
+    const { newUsername } = req.body;
+    if (!newUsername) {
+      res.status(400).json({ "msg": "Preencha o novo nome do paciente" });
       return;
     }
-
-    const response = await patientModel.changePatientName(email, newPatientName);
+    const response = await patientModel.changePatientName(login, newUsername);
     res.status(response[0]);
     res.json(response[1]);
     return;
-
   }
   async updatePatient(req, res) {
     const loggedUser = req.loggedUser;
@@ -89,7 +81,7 @@ class PatientController {
       return;
     }
     if (!(newPassword && newUsername)) {
-      res.status(400).json({ msg: "Você não pode deixar os campos vazios!" });
+      res.status(400).json({ msg: "Você não pode deixar nenhum campo vazio!" });
       return;
     }
     const response = await patientModel.updatePatientData(login, loggedUser, newPassword, newUsername);
