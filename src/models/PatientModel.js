@@ -1,10 +1,27 @@
 import dbConnection from '../db/DbConnection.js';
 class PatientModel {
+  async userCanManipulatePatient(responsibleEmail, patientLogin) {
+    const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ? AND nm_email_usuario = ?;';
+    try {
+      const connection = await dbConnection.openConnection();
+      const [rows, fields, err] = await connection.execute(query, [patientLogin, responsibleEmail]);
+      dbConnection.closeConnection(connection);
+      if (rows[0] && !err) {
+        return true;
+      }
+      else {
+        console.log(rows[0]);
+        console.log(err);
+        return false;
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
   async patientExists(login) {
     const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ?;';
-    /* aqui usamos um prepared statement, com o execute, logo também não ficamos vulneráveis à sql injection!
-    http://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks
-    */
     try {
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query, [login]);
@@ -147,9 +164,12 @@ class PatientModel {
     }
   }
 
-  async changePatientName(patientLogin, newPatientname) {
+  async changePatientName(patientLogin, newPatientname, loggedUser) {
     const query = `CALL alterarNomePaciente('${patientLogin}','${newPatientname}');`;
     try {
+      if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
+        return [401, { "msg": "Você não é o responsável por esse paciente" }];
+      }
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
       dbConnection.closeConnection(connection);
@@ -166,11 +186,10 @@ class PatientModel {
     }
   }
   async updatePatientData(patientLogin, loggedUser, newPassword, newUsername) {
-    let isResponsible = 1; //alterar, ver se o cara logado tem permissao e pa
-    if (!isResponsible) {
-      return [401, { "msg": "Você não tem autorização para trocar dados de pacientes que não são seus" }];
-    }
     try {
+      if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
+        return [401, { "msg": "Você não é o responsável por esse paciente" }];
+      }
       const query = `CALL alterarDadosPaciente('${patientLogin}','${newPassword}','${newUsername}');`;
       const connection = await dbConnection.openConnection();
       const [rows, fields, err] = await connection.execute(query);
@@ -182,7 +201,27 @@ class PatientModel {
       return [500, { "msg": "Erro no banco" }];
     }
   }
-
+  async deletePatient(loggedUser, patientLogin) {
+    const query = `call deletarPaciente(${patientLogin})`;
+    try {
+      if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
+        return [401, { "msg": "Você não é o responsável por esse paciente" }];
+      }
+      const connection = await dbConnection.openConnection();
+      const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
+      if (!err) {
+        return [200, { "msg": "Paciente deletado com sucesso" }];
+      }
+      else {
+        return [500, { "msg": "Erro!" }];
+      }
+    }
+    catch (e) {
+      console.log(e);
+      return [500, { "msg": "Erro no banco" }];
+    }
+  }
 }
 
 export { PatientModel }
