@@ -3,6 +3,7 @@ import TokenController from '../controllers/TokenController.js';
 
 const tokenRouter = new Router();
 
-tokenRouter.post('/login', TokenController.store);
+tokenRouter.post('/loginUsuario', TokenController.loginUsuario);
+tokenRouter.post('/loginPaciente', TokenController.loginPaciente);
 
 export default tokenRouter;

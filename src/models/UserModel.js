@@ -1,5 +1,6 @@
 import dbConnection from '../db/DbConnection.js';
 class UserModel {
+
   async userExists(email) {
     const query = 'SELECT * FROM usuario WHERE nm_email_usuario = ?;';
     /* aqui usamos um prepared statement, com o execute, logo também não ficamos vulneráveis à sql injection!
@@ -21,6 +22,7 @@ class UserModel {
       return false;
     }
   }
+  
   async validateLogin(email, password) {
     const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
@@ -39,6 +41,7 @@ class UserModel {
       return false;
     }
   }
+
   async createUser(email, password, phoneNumber, username) {
     if (await this.userExists(email)) {
       return [400, { "msg": "esse usuario já está cadastrado" }];
