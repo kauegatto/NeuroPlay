@@ -74,6 +74,7 @@ h1{
     border: 0.6px solid #000000;
     display: inline-block;
 }
+
 .contentText{
     font-family: Fredoka One;
     font-style: normal;
@@ -84,6 +85,23 @@ h1{
     color: #FFFFFF;
     -webkit-text-stroke: 1.3px black;
 }
+
+.contentBlock p{
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+    color: #FFFFFF;
+    -webkit-text-stroke: 1.3px black;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    margin: 0; 
+}
+
 .contentHref{
     height: 100%;
     width: 100%;

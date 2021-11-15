@@ -1,9 +1,11 @@
 const urlParams = new URLSearchParams(window.location.search);
 const login = urlParams.get('login');
+
 if (!login) {
   alert("Você precisa escolher um paciente para editar");
   window.location.href = '../html/pacientes.html';
 }
+
 function preencherDadosPaciente() {
   let deuErro = 0, responseStatus = 0;
   const URL = `http://localhost:3000/patient/find/${login}`;
@@ -13,11 +15,13 @@ function preencherDadosPaciente() {
     window.location.href = '../../login/login.html';
     return;
   }
+
   options = {
     method: "GET",
     headers: { 'Content-Type': 'application/json', 'authorization': localStorage.getItem("authorization") },
     mode: 'cors',
   };
+
   fetch(URL, options).then(function (response) {
     if (!response.ok) {
       deuErro = 1;
@@ -36,6 +40,7 @@ function preencherDadosPaciente() {
     }
   })
 }
+
 function alterarTudo() {
   let deuErro = 0, responseStatus = 0;
   const URL = `http://localhost:3000/patient?login=${login}`;
@@ -73,6 +78,7 @@ function alterarTudo() {
     }
   })
 }
+
 function alterarNome() {
   let deuErro = 0, responseStatus = 0;
   const URL = `http://localhost:3000/patient/changePatientName/${login}`;
@@ -110,6 +116,7 @@ function alterarNome() {
     }
   })
 }
+
 $(document).ready(function () {
   preencherDadosPaciente();
   $('#btnCadastrarPaciente').click(function () {

@@ -1,10 +1,11 @@
 localStorage.clear();
+
 $(document).on("click", "#btnEntrar", function () {
 
   let deuErro = 0;
 
   if ($('#cbxCrianca:checked').val() == 1) {
-    console.log('entrou');
+
     const URL = "http://localhost:3000/tokens/loginPaciente";
 
     options = {
@@ -32,7 +33,7 @@ $(document).on("click", "#btnEntrar", function () {
 
   }
   else if ($('#cbxAdulto:checked').val() == 0) {
-    console.log('entrou usuario');
+
     const URL = "http://localhost:3000/tokens/loginUsuario";
 
     options = {

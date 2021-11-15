@@ -7,7 +7,9 @@ function parseJwt(token) {
 
   return JSON.parse(jsonPayload);
 };
+
 $(document).ready(function () {
   let jwt = parseJwt(localStorage.getItem('authorization'));
   $('#caraLogado').html(jwt.email);
 })
+

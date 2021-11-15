@@ -1,17 +1,22 @@
 function listarPacientes() {
+
   let deuErro = 0, responseStatus = 0;
+
   const URL = "http://localhost:3000/user/findPatients";
+
   if (!localStorage.getItem("authorization")) {
     /* poupar recurso, nem faz o request*/
     alert("Você precisa estar logado para fazer isso!");
     window.location.href = '../../login/login.html';
     return;
   }
+
   options = {
     method: "GET",
     headers: { 'Content-Type': 'application/json', 'authorization': localStorage.getItem("authorization") },
     mode: 'cors',
   };
+
   fetch(URL, options).then(function (response) {
     if (!response.ok) {
       deuErro = 1;
@@ -33,7 +38,9 @@ function listarPacientes() {
     }
   })
 }
+
 function deletarPaciente(login) {
+  
   let deuErro = 0, responseStatus = 0;
   const URL = `http://localhost:3000/patient/${login}`;
   if (!localStorage.getItem("authorization")) {
@@ -47,6 +54,7 @@ function deletarPaciente(login) {
     headers: { 'Content-Type': 'application/json', 'authorization': localStorage.getItem("authorization") },
     mode: 'cors',
   };
+
   fetch(URL, options).then(function (response) {
     if (!response.ok) {
       deuErro = 1;
@@ -66,13 +74,17 @@ function deletarPaciente(login) {
     }
   })
 }
+
 $(document).ready(function () {
   listarPacientes();
+
   $(".content").on('click', '.deletarPaciente', function () {
+
     console.log(this.id);
     let querDeletar = confirm(`Você quer continuar no processo de deletar o paciente de login ${this.id}`);
     if (querDeletar) {
       deletarPaciente(this.id);
     }
+    
   });
 })
