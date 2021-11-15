@@ -1,5 +1,6 @@
 import dbConnection from '../db/DbConnection.js';
 class PatientModel {
+
   async patientExists(login) {
     const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ?;';
     /* aqui usamos um prepared statement, com o execute, logo também não ficamos vulneráveis à sql injection!
@@ -21,6 +22,26 @@ class PatientModel {
       return false;
     }
   }
+
+  async validateLogin(email, password) {
+    const query = `CALL loginPaciente('${email}','${password}');`;
+    try {
+      const connection = await dbConnection.openConnection();
+      const [rows, fields, err] = await connection.execute(query);
+      dbConnection.closeConnection(connection);
+      /* rows 0;0 é p pegar exatamente os dados do primeiro resultado dos resultados, mas como só tem 1, vai dar certo*/
+      if (rows[0][0] && !err) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    catch (e) {
+      return false;
+    }
+  }
+
   async getPatientName(login) {
     const query = `call getNomePaciente('${login}')`;
     try {
