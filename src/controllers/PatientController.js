@@ -67,7 +67,7 @@ class PatientController {
       res.status(400).json({ "msg": "Preencha o novo nome do paciente" });
       return;
     }
-    const response = await patientModel.changePatientName(login, newUsername);
+    const response = await patientModel.changePatientName(login, newUsername, loggedUser);
     res.status(response[0]);
     res.json(response[1]);
     return;
@@ -85,6 +85,18 @@ class PatientController {
       return;
     }
     const response = await patientModel.updatePatientData(login, loggedUser, newPassword, newUsername);
+    res.status(response[0]);
+    res.json(response[1]);
+    return;
+  }
+  async deletePatient(req, res) {
+    const loggedUser = req.loggedUser; /* tem q vlidar se o cara pode realmente deletar o paciente*/
+    const { login } = req.params; /* cara que vai ser deletado*/
+    if (!login) {
+      res.status(400).json({ "msg": "Escolha um paciente para deletar" });
+      return;
+    }
+    const response = await patientModel.deletePatient(loggedUser, login);
     res.status(response[0]);
     res.json(response[1]);
     return;

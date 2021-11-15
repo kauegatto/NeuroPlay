@@ -11,5 +11,6 @@ patientRouter.get('/details/:email', loginRequired, PatientController.activityDe
 patientRouter.put('/changePassword/:login', loginRequired, PatientController.changePassword);
 patientRouter.put('/changePatientName/:login', loginRequired, PatientController.changePatientName);
 patientRouter.put('/', loginRequired, PatientController.updatePatient);
+patientRouter.delete('/:login', loginRequired, PatientController.deletePatient);
 export default patientRouter;
 
