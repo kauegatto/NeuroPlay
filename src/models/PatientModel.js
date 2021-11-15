@@ -202,7 +202,7 @@ class PatientModel {
     }
   }
   async deletePatient(loggedUser, patientLogin) {
-    const query = `call deletarPaciente(${patientLogin})`;
+    const query = `delete from paciente where nm_login_paciente='${patientLogin}'`;
     try {
       if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
         return [401, { "msg": "Você não é o responsável por esse paciente" }];

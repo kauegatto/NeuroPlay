@@ -11,7 +11,6 @@ class PatientController {
       res.status(400).json({ "msg": "Preencha todos os campos!" });
       return;
     }
-
     const response = await patientModel.createPatient(name, login, password, loggedUser);
     res.status(response[0]);
     res.json(response[1]);
