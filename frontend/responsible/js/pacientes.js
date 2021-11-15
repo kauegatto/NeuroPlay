@@ -55,7 +55,7 @@ function deletarPaciente(login) {
     return response.json();
   }).then(json => {
     if (!deuErro) {
-      alert("Paciente deletado com sucesso");
+      alert(json.msg);
       document.location.reload(true);
     }
     else {

@@ -2,13 +2,14 @@ DROP SCHEMA IF EXISTS prjTDAH;
 CREATE SCHEMA prjTDAH;
 USE prjTDAH;
 
+DROP table if exists avaliacao_dificuldade;
 Create Table avaliacao_dificuldade
 (
 	cd_avaliacao int(11),
 	nm_avaliacao varchar(200),
 	constraint primary key pk_avaliacao_dificuldade (cd_avaliacao)
 );
-
+DROP table if exists tema;
 Create Table tema 
 (
 	cd_tema int(11),
@@ -16,7 +17,7 @@ Create Table tema
 	constraint primary key pk_tema (cd_tema)
 );
 
-
+DROP table if exists video;
 Create Table video 
 (
 	cd_video int(11),
@@ -29,6 +30,7 @@ Create Table video
 	references tema (cd_tema)
 );
 
+DROP table if exists tipo_atividade;
 Create Table tipo_atividade
 (
 	cd_tipo_atividade int(11),
@@ -37,14 +39,14 @@ Create Table tipo_atividade
 	ds_tipo_atividade text,
 	constraint primary key pk_tipo_atividade (cd_tipo_atividade)
 );
-
+DROP table if exists tipo_usuario;
 Create Table tipo_usuario
 (
 	cd_tipo_usuario int(11),
 	nm_tipo_usuario varchar(45),
 	constraint primary key pk_tipo_usuario (cd_tipo_usuario)
 );
-
+DROP table if exists usuario;
 Create Table usuario 
 (
 	nm_email_usuario varchar(200),
@@ -55,17 +57,17 @@ Create Table usuario
 	constraint primary key pk_email_usuario (nm_email_usuario),
 	constraint fk_tipo_usuario foreign key (cd_tipo_usuario) references tipo_usuario (cd_tipo_usuario)
 );
-
+DROP table if exists paciente;
 Create Table paciente
 (
-	nm_login_paciente varchar(200),
+	nm_login_paciente varchar(200), 
 	nm_senha_paciente varchar(128),
 	nm_email_usuario varchar(200),
 	nm_paciente varchar(200),
 	constraint primary key pk_login_paciente (nm_login_paciente),
-	constraint fk_email_usuario foreign key (nm_email_usuario) references usuario (nm_email_usuario)
+	constraint fk_email_usuario foreign key (nm_email_usuario) references usuario (nm_email_usuario) ON DELETE CASCADE
 );
-
+DROP table if exists atividade;
 Create Table atividade 
 (
 	cd_atividade int(11),
@@ -77,7 +79,7 @@ Create Table atividade
 	constraint fk_tema_atividade foreign key (cd_tema)
 	references tema (cd_tema)
 );
-
+DROP table if exists paciente_atividade;
 Create Table paciente_atividade 
 (
 	nm_login_paciente varchar(200),
@@ -89,13 +91,13 @@ Create Table paciente_atividade
 	hr_fim time,
 	constraint primary key pk_login_paciente_atividade (nm_login_paciente, cd_atividade, dt_inicio, hr_inicio, dt_fim, hr_fim),
 	constraint fk_login_paciente_atividade foreign key (nm_login_paciente) 
-	references paciente (nm_login_paciente),
+	references paciente (nm_login_paciente) ON DELETE CASCADE,
 	constraint fk_atividade_paciente foreign key (cd_atividade)
 	references atividade (cd_atividade),
 	constraint fk_avaliacao_paciente foreign key (cd_avaliacao)
 	references avaliacao_dificuldade (cd_avaliacao)
 );
-
+DROP table if exists video_paciente;
 Create Table video_paciente
 (
 	cd_video int(11),
@@ -106,7 +108,7 @@ Create Table video_paciente
 	constraint fk_video_paciente foreign key (cd_video)
 	references video (cd_video),
 	constraint fk_login_video_paciente foreign key (nm_login_paciente) 
-	references paciente (nm_login_paciente),
+	references paciente (nm_login_paciente) ON DELETE CASCADE,
 	constraint fk_avaliacao_video_paciente foreign key (cd_avaliacao)
 	references avaliacao_dificuldade (cd_avaliacao)
 );
