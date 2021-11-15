@@ -37,7 +37,7 @@ function listarVideos() {
 
                 let themes = `
                 <a href="learnVideo.html?cdVideo=${element.cd_video}" class="contentHref">
-                    <div class="contentBlock" id="${tema}">
+                    <div class="contentBlockLearn" id="${tema}">
                         <p class="contentText">${element.nm_video}</p>
                     </div>
                 </a>`;
