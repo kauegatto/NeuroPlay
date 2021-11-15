@@ -33,9 +33,46 @@ function listarPacientes() {
     }
   })
 }
+function deletarPaciente(login) {
+  let deuErro = 0, responseStatus = 0;
+  const URL = `http://localhost:3000/patient/${login}`;
+  if (!localStorage.getItem("authorization")) {
+    /* poupar recurso, nem faz o request*/
+    alert("Você precisa estar logado para fazer isso!");
+    window.location.href = '../../login/login.html';
+    return;
+  }
+  options = {
+    method: "DELETE",
+    headers: { 'Content-Type': 'application/json', 'authorization': localStorage.getItem("authorization") },
+    mode: 'cors',
+  };
+  fetch(URL, options).then(function (response) {
+    if (!response.ok) {
+      deuErro = 1;
+    }
+    responseStatus = response.status;
+    return response.json();
+  }).then(json => {
+    if (!deuErro) {
+      alert("Paciente deletado com sucesso");
+      document.location.reload(true);
+    }
+    else {
+      alert(json.msg);
+      if (responseStatus == 498 || responseStatus == 401) {
+        window.location.href = '../../login/login.html';
+      }
+    }
+  })
+}
 $(document).ready(function () {
   listarPacientes();
-  $(".deletarPaciente").on('click', function () {
-    console.log("a");
+  $(".content").on('click', '.deletarPaciente', function () {
+    console.log(this.id);
+    let querDeletar = confirm(`Você quer continuar no processo de deletar o paciente de login ${this.id}`);
+    if (querDeletar) {
+      deletarPaciente(this.id);
+    }
   });
 })
