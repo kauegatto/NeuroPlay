@@ -148,7 +148,12 @@ class PatientModel {
       const [rows, fields, err] = await connection.execute(query);
       dbConnection.closeConnection(connection);
       if (!err) {
-        return [200, rows[0]];
+        if (rows[0][0]) {
+          return [200, rows[0]];
+        }
+        else {
+          return [200, { "msg": "Você ainda não tem pacientes cadastrados" }];
+        }
       }
       else {
         return [400, { "msg": "Erro no banco" }];

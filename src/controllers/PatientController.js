@@ -16,7 +16,6 @@ class PatientController {
     res.json(response[1]);
     return;
   }
-
   async getPatientName(req, res) {
     const loggedUser = req.loggedUser;
     const { login } = req.params;
@@ -25,7 +24,6 @@ class PatientController {
     res.json(response[1]);
     return;
   }
-
   async patientReport(req, res) {
     const loggedUser = req.loggedUser;
     const { email } = req.params;
@@ -34,7 +32,6 @@ class PatientController {
     res.json(response[1]);
     return;
   }
-
   async activityDetails(req, res) {
     const loggedUser = req.loggedUser;
     const { email } = req.params;
@@ -43,7 +40,6 @@ class PatientController {
     res.json(response[1]);
     return;
   }
-
   async changePassword(req, res) {
     const loggedUser = req.loggedUser; /* tem q vlidar se o cara pode realmente mudar ne*/
     const { login } = req.params;
@@ -57,7 +53,6 @@ class PatientController {
     res.json(response[1]);
     return;
   }
-
   async changePatientName(req, res) {
     const loggedUser = req.loggedUser; /* tem q vlidar se o cara pode realmente mudar ne*/
     const { login } = req.params;

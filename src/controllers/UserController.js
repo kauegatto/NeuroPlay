@@ -10,7 +10,7 @@ class UserController {
     const { email, password, phoneNumber, username } = req.body;
     if (!(email && password && phoneNumber, username)) {
       res.status(400);
-      res.json({ "erro": "Você precisa preencher todos os campos" });
+      res.json({ "msg": "Você precisa preencher todos os campos" });
       return;
     }
     const response = await userModel.createUser(email, password, phoneNumber, username);
