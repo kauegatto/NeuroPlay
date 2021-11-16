@@ -24,7 +24,7 @@ class App {
     this.app.use('/tokens/', tokenRouter);
     this.app.use('/user/', userRouter);
     this.app.use('/games/', gamesRouter);
-    this.app.use('/learn', learnRouter);
+    this.app.use('/learn/', learnRouter);
     this.app.use('/patient/', patientRouter);
     this.app.get('/', (req, res) => res.send("Hello world!"));
   }

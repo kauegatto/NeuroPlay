@@ -1,5 +1,6 @@
 import dbConnection from '../db/DbConnection.js';
 class UserModel {
+
   async userExists(email) {
     const query = 'SELECT * FROM usuario WHERE nm_email_usuario = ?;';
     /* aqui usamos um prepared statement, com o execute, logo também não ficamos vulneráveis à sql injection!
@@ -21,6 +22,7 @@ class UserModel {
       return false;
     }
   }
+
   async validateLogin(email, password) {
     const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
@@ -39,12 +41,13 @@ class UserModel {
       return false;
     }
   }
+
   async createUser(email, password, phoneNumber, username) {
     if (await this.userExists(email)) {
       return [400, { "msg": "esse usuario já está cadastrado" }];
     }
-    if (password.length < 8) {
-      return [400, "Sua senha precisa ter ao menos 3 caracteres"];
+    if (password.length < 3) {
+      return [400, { "msg": "Sua senha precisa ter ao menos 3 caracteres" }];
     }
     const query = `CALL inserirUsuario('${email}','${password}','${phoneNumber}','${username}');`;
     try {
@@ -52,7 +55,7 @@ class UserModel {
       const [rows, fields, err] = await connection.execute(query);
       dbConnection.closeConnection(connection);
       if (!err) {
-        return [200, { "msg": "usuario criado" }];
+        return [200, { "msg": "Usuário criado com sucesso!" }];
       }
       else {
         return [500, { "msg": "coisa no banco" }];

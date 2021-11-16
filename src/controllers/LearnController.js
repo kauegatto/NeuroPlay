@@ -5,7 +5,6 @@ const learnModel = new LearnModel();
 class LearnController {
 
     async GetTheme(req, res) {
-        const caralogado = req.loggedUser;
         const response = await learnModel.AllThemes();
         res.status(response[0]);
         res.json(response[1]);
@@ -13,24 +12,20 @@ class LearnController {
     }
 
     async AlllVideosTheme(req, res) {
-        const caralogado = req.loggedUser;
-        const { id } = req.params;
-        const response = await learnModel.Videos(id);
+        const { cdTema } = req.query;
+        const response = await learnModel.Videos(cdTema);
         res.status(response[0]);
         res.json(response[1]);
         return;
     }
 
     async SelectedVideo(req, res) {
-
-        const caralogado = req.loggedUser;
-        const { id } = req.params;
-        const response = await learnModel.OneVideo(id);
+        const { cdVideo } = req.query;
+        const response = await learnModel.OneVideo(cdVideo);
         res.status(response[0]);
         res.json(response[1]);
         return;
     }
-
 
 }
 

@@ -7,8 +7,8 @@ const gamesRouter = new Router();
 
 gamesRouter.get('/theme', loginRequired, GamesController.GetTheme);
 
-gamesRouter.get('/theme/:id', loginRequired, GamesController.FindOneTheme);
+gamesRouter.get('/themeGame/', loginRequired, GamesController.FindOneTheme);
 
-gamesRouter.get('/:id', loginRequired, GamesController.OneGame);
+gamesRouter.get('/', loginRequired, GamesController.OneGame);
 
 export default gamesRouter;

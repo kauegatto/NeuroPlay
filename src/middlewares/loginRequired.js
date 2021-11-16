@@ -5,7 +5,7 @@ dotenv.config();
 export default (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) {
-    res.status(401).json({ errors: ['login required'] });
+    res.status(401).json({ msg: 'Você precisa estar logado para fazer isso' });
     return;
   }
   try {
@@ -13,7 +13,7 @@ export default (req, res, next) => {
     const { email } = data;
     req.loggedUser = email;
   } catch (e) {
-    res.status(498).json({ errors: ['Token inválido ou expirado.'] });
+    res.status(498).json({ msg:'Login inválido ou expirado.' });
     return;
   }
   next();

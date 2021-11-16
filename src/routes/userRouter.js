@@ -15,7 +15,6 @@ userRouter.put('/changePassword', loginRequired, userController.changePassword);
 userRouter.put('/changePhoneNumber', loginRequired, userController.changePhoneNumber);
 userRouter.put('/changeUsername', loginRequired, userController.changeUsername);
 
-
 /* 
 userRouter.get('/:id', loginRequired, userController.findOne);
 
