@@ -1,13 +1,10 @@
 localStorage.clear();
 
 $(document).on("click", "#btnEntrar", function () {
-
   let deuErro = 0;
-
   if ($('#cbxCrianca:checked').val() == 1) {
-
-    const URL = "http://localhost:3000/tokens/loginPaciente";
-
+    const base_url = "http://localhost:3000";
+    const URL = `${base_url}/tokens/loginPaciente`;
     options = {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
@@ -33,8 +30,8 @@ $(document).on("click", "#btnEntrar", function () {
 
   }
   else if ($('#cbxAdulto:checked').val() == 0) {
-
-    const URL = "http://localhost:3000/tokens/loginUsuario";
+    const base_url = "http://localhost:3000";
+    const URL = `${base_url}/tokens/loginUsuario`;
 
     options = {
       method: "POST",

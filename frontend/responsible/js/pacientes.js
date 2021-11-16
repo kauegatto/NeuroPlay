@@ -25,10 +25,15 @@ function listarPacientes() {
     return response.json();
   }).then(json => {
     if (!deuErro) {
-      json.forEach(element => {
-        let patient = `<div class="infoPaciente" > <a href="relatorioPaciente.html"><span class="NomePaciente">${element.nm_paciente}</span></a> <a href="alterarDadosPaciente.html?login=${element.nm_login_paciente}"><img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left; position:relative;left:-10px;"></a><img class="deletarPaciente" id="${element.nm_login_paciente}" src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
-        $('.content').append(patient);
-      });
+      try {
+        json.forEach(element => {
+          let patient = `<div class="infoPaciente" > <a href="relatorioPaciente.html"><span class="NomePaciente">${element.nm_paciente}</span></a> <a href="alterarDadosPaciente.html?login=${element.nm_login_paciente}"><img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left; position:relative;left:-10px;"></a><img class="deletarPaciente" id="${element.nm_login_paciente}" src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
+          $('.content').append(patient);
+        });
+      }
+      catch {
+        $('.content').append(`<h1 style="font-size: 20px;">${json.msg}</h1>`)
+      }
     }
     else {
       alert(json.msg);
@@ -40,7 +45,7 @@ function listarPacientes() {
 }
 
 function deletarPaciente(login) {
-  
+
   let deuErro = 0, responseStatus = 0;
   const URL = `http://localhost:3000/patient/${login}`;
   if (!localStorage.getItem("authorization")) {
@@ -85,6 +90,6 @@ $(document).ready(function () {
     if (querDeletar) {
       deletarPaciente(this.id);
     }
-    
+
   });
 })

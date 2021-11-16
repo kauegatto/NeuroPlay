@@ -1,6 +1,8 @@
 $(document).on("click", "#btnCriarConta", function () {
+    let deuErro;
 
-    const URL = "http://localhost:3000/user/create";
+    const base_url = "http://localhost:3000"
+    const URL = `${base_url}/user/create`;
 
     options = {
         method: "POST",
@@ -8,26 +10,24 @@ $(document).on("click", "#btnCriarConta", function () {
         mode: 'cors',
         //headers: { "authentication": cookies.authentication },
         body: JSON.stringify({
-
             "email": $("#emailInput").val(), "password": $("#passwordInput").val(),
-            "phoneNumber": $('#phoneNumberInput').val(), "username": $('#nomeInput').val()
-
+            "phoneNumber": $('#phoneNumberInput').val(), "username": $('#usernameInput').val()
         }),
     };
 
-    fetch(URL, options)
-        .then(response => (response.json()))
-        .then(json => {
+    fetch(URL, options).then(function (response) {
+        if (!response.ok) {
+            deuErro = 1;
+        }
+        return response.json();
+    }).then(json => {
+        if (!deuErro) {
+            alert(json.msg);
+            window.location.href = '../login/login.html';
+        }
+        else {
             console.log(json);
-            if (json.code == 200) {
-                document.cookie = "authorization=" + json.token;
-                alert("Usuário criado com sucesso!");
-                alert(document.cookie);
-                window.location.href = '../Login/login.html';
-            }
-            else {
-                alert(json.msg);
-            }
-        })
-
+            alert(json.msg);
+        }
+    })
 });
