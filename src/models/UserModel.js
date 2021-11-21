@@ -22,7 +22,7 @@ class UserModel {
       return false;
     }
   }
-  
+
   async validateLogin(email, password) {
     const query = `CALL LoginUsuario('${email}','${password}');`;
     try {
@@ -46,8 +46,8 @@ class UserModel {
     if (await this.userExists(email)) {
       return [400, { "msg": "esse usuario já está cadastrado" }];
     }
-    if (password.length < 8) {
-      return [400, "Sua senha precisa ter ao menos 3 caracteres"];
+    if (password.length < 3) {
+      return [400, { "msg": "Sua senha precisa ter ao menos 3 caracteres" }];
     }
     const query = `CALL inserirUsuario('${email}','${password}','${phoneNumber}','${username}');`;
     try {
@@ -55,7 +55,7 @@ class UserModel {
       const [rows, fields, err] = await connection.execute(query);
       dbConnection.closeConnection(connection);
       if (!err) {
-        return [200, { "msg": "usuario criado" }];
+        return [200, { "msg": "Usuário criado com sucesso!" }];
       }
       else {
         return [500, { "msg": "coisa no banco" }];
