@@ -28,7 +28,7 @@ class PatientController {
 
   async patientReport(req, res) {
     const loggedUser = req.loggedUser;
-    const { email } = req.params;
+    const { email } = req.query;
     const response = await patientModel.patientReport(email);
     res.status(response[0]);
     res.json(response[1]);
@@ -37,8 +37,8 @@ class PatientController {
 
   async activityDetails(req, res) {
     const loggedUser = req.loggedUser;
-    const { email } = req.params;
-    const response = await patientModel.activityDetails(email);
+    const { emailPaciente } = req.query;
+    const response = await patientModel.activityDetails(emailPaciente);
     res.status(response[0]);
     res.json(response[1]);
     return;
