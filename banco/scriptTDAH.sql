@@ -89,6 +89,7 @@ Create Table paciente_atividade
 	hr_inicio time,
 	dt_fim date,
 	hr_fim time,
+    qtd_nota_atividade int,
 	constraint primary key pk_login_paciente_atividade (nm_login_paciente, cd_atividade, dt_inicio, hr_inicio, dt_fim, hr_fim),
 	constraint fk_login_paciente_atividade foreign key (nm_login_paciente) 
 	references paciente (nm_login_paciente) ON DELETE CASCADE,

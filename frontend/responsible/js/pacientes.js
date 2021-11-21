@@ -27,7 +27,15 @@ function listarPacientes() {
     if (!deuErro) {
       try {
         json.forEach(element => {
-          let patient = `<div class="infoPaciente" > <a href="relatorioPaciente.html"><span class="NomePaciente">${element.nm_paciente}</span></a> <a href="alterarDadosPaciente.html?login=${element.nm_login_paciente}"><img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left; position:relative;left:-10px;"></a><img class="deletarPaciente" id="${element.nm_login_paciente}" src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
+          let patient = `
+          <div class="infoPaciente" >
+            <a href="relatorioPaciente.html?email=${element.nm_login_paciente}">
+              <span class="NomePaciente">${element.nm_paciente}</span>
+            </a>
+            <a href="alterarDadosPaciente.html?login=${element.nm_login_paciente}">
+              <img src="../../img/iconEditar.png" alt="" style="margin-top: 5px; float: left; position:relative;left:-10px;">
+            </a>
+            <img class="deletarPaciente" id="${element.nm_login_paciente}" src="../../img/iconLixo.png" alt="" style="margin: 5px 4px; float: left;"></div>`;
           $('.content').append(patient);
         });
       }

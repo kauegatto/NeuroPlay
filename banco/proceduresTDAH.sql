@@ -328,6 +328,71 @@ begin
 
 end$$
 
+Drop function if exists qtdAtividadeQuiz$$
+
+CREATE FUNCTION qtdAtividadeQuiz(vEmailPaciente varchar(200))
+returns int
+begin
+	
+    declare qtdAtividadeQuiz int;
+
+	select 
+
+		count(a.cd_tipo_atividade)
+        
+	into qtdAtividadeQuiz
+
+	from
+			paciente p join paciente_atividade pa
+			on p.nm_login_paciente = pa.nm_login_paciente
+			
+			join atividade a
+			on pa.cd_atividade = a.cd_atividade
+			
+		   join tipo_atividade ta
+		   on a.cd_tipo_atividade = ta.cd_tipo_atividade
+		
+	where 
+			p.nm_login_paciente = vEmailPaciente
+			and ta.cd_tipo_atividade = 1;
+            
+	return qtdAtividadeQuiz;
+    
+end$$
+
+Drop function if exists notaQuiz$$
+
+CREATE FUNCTION notaQuiz(vEmailPaciente varchar(200))
+returns float
+begin
+	
+    declare notaQuiz float;
+
+	select 
+
+		 sum(pa.qtd_nota_atividade) / count(a.cd_tipo_atividade) as notaQuiz
+        
+	into notaQuiz
+
+	from
+			paciente p join paciente_atividade pa
+			on p.nm_login_paciente = pa.nm_login_paciente
+			
+			join atividade a
+			on pa.cd_atividade = a.cd_atividade
+			
+		   join tipo_atividade ta
+		   on a.cd_tipo_atividade = ta.cd_tipo_atividade
+		
+	where 
+			p.nm_login_paciente = vEmailPaciente
+			and ta.cd_tipo_atividade = 1;
+            
+	return notaQuiz;
+    
+end$$
+
+
 /* Procedure que retorna todos os dados de um paciente perante as suas atividades (relatorio geral)*/
 
 Drop procedure if exists relatorioPaciente$$
@@ -337,14 +402,29 @@ begin
 
 	select 
 			p.nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificultade(vEmailPaciente) as menorDif,
-			maiorDificultade(vEmailPaciente) as maiorDif, timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
-			cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime)) as tempoDiff
+
+			maiorDificultade(vEmailPaciente) as maiorDif, 
             
-			/* tempo medio por cada atividade  */ 
+            time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
+			cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime))  ) ) ),'%H:%i:%s') as tempoDiff,
             
+          
+            cast(SEC_TO_TIME(AVG(TIME_TO_SEC(timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
+			cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime))))) as time) as tempoMedio,
+
+            
+            qtdAtividadeQuiz(vEmailPaciente) as qtdAtividadeQuiz, 
+            ta.nm_tipo_atividade as nomeQuiz, notaQuiz(vEmailPaciente) as notaQuiz,
+            p.nm_login_paciente
 	from
 			paciente p join paciente_atividade pa
 			on p.nm_login_paciente = pa.nm_login_paciente
+              
+            join atividade a
+            on pa.cd_atividade = a.cd_atividade
+            
+           join tipo_atividade ta
+           on a.cd_tipo_atividade = ta.cd_tipo_atividade
 	where 
 			p.nm_login_paciente = vEmailPaciente
 	group by
@@ -376,11 +456,12 @@ Drop procedure if exists detalhesAtividade$$
 Create procedure detalhesAtividade(vEmailPaciente varchar(200))
 begin
  
-	select 
+	select distinct
 		a.cd_atividade, date_format(pa.dt_inicio, '%d/%m/%Y') as dataInicio, 
         date_format(pa.dt_fim, '%d/%m/%Y') as dataFim, timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
 		cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime)) as tempoDiff,
-        a.nm_atividade, t.nm_tema, ta.nm_avaliacao, tatv.ic_tem_nota
+        a.nm_atividade, t.nm_tema, ta.nm_avaliacao, tatv.ic_tem_nota,
+		notaQuiz(vEmailPaciente) as notaQuiz
 	from 
 		atividade a 
 	join
@@ -399,7 +480,9 @@ begin
 		tipo_atividade tatv
 	on
 		(tatv.cd_tipo_atividade = a.cd_tipo_atividade)
-	where nm_login_paciente = vEmailPaciente;
+	where nm_login_paciente = vEmailPaciente
+    
+    order by dt_inicio desc;
 end$$
 
 Delimiter ;

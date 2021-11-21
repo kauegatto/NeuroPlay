@@ -42,7 +42,7 @@ insert into video values (20, 'Aula sobre meios de comunicações', 'Nesta víde
 
 /* MASSA DE TESTE TIPO_ATIVIDADE */
 
-insert into tipo_atividade values (1, 'Quiz', 0, 'Quiz é o nome de um jogo de questionários que tem como objetivo fazer uma avaliação dos conhecimentos sobre determinado assunto.');	
+insert into tipo_atividade values (1, 'Quiz', 1, 'Quiz é o nome de um jogo de questionários que tem como objetivo fazer uma avaliação dos conhecimentos sobre determinado assunto.');	
 insert into tipo_atividade values (2, 'Labirinto', 0, 'Labirinto tem o objetivo muito simples: chegar na saída no menor tempo possível para escapar do labirinto.');
 insert into tipo_atividade values (3, 'Raciocínio lógico', 0, 'Os Jogos de Raciocínio configuram e organizam espaços em que os jogadores atuam colocando em prática (e portanto, desenvolvendo) uma série de habilidades tanto cognitivas como socioemocionais.');
 insert into tipo_atividade values (4, 'Caça-Palavras', 0, 'O jogo de caça-palavras, ou sopa de letras, é um passatempo que consiste de letras arranjadas aparentemente aleatórias em uma grade quadrada ou retangular.');
@@ -85,8 +85,9 @@ insert into atividade values (10, 'Que continente é esse?', 'Tente descobrir na
 
 /* MASSA DE TESTE PACIENTE_ATIVIDADE */
 
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 1, 1, '2021/09/07', '14:00:00', '2021/09/07', '14:20:00');
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/09/07', '15:00:00', '2021/09/07', '15:20:00');
+insert into paciente_atividade values ('brunooliveira11@gmail.com', 1, 1, '2021/09/07', '14:00:00', '2021/09/07', '14:20:00', 5);
+insert into paciente_atividade values ('brunooliveira11@gmail.com', 4, 3, '2021/09/08', '15:00:00', '2021/09/08', '15:30:00', 2);
+insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/09/07', '15:00:00', '2021/09/07', '15:20:00', 2);
 
 /* MASSA DE TESTE VIDEO_PACIENTE */
 
