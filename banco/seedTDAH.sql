@@ -10,7 +10,7 @@ insert into tema values (1, 'Animais');
 insert into tema values (2, 'Letras');
 insert into tema values (3, 'Números');
 insert into tema values (4, 'Cores');
-insert into tema values (5, 'Conhecimentos do Mundo');
+insert into tema values (5, 'Mundo');
 insert into tema values (6, 'Música'); 
 insert into tema values (7, 'Corpo');
 insert into tema values (8, 'Alimentos');
