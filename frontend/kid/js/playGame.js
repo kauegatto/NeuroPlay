@@ -56,4 +56,10 @@ $(document).ready(function () {
 
     dadosGames();
 
+    $('.content').on('click', '#btnJogar', function () {
+
+        window.location.href = `../games/html/game${cdAtividade}/game${cdAtividade}.html`;
+
+    });
+
 });
