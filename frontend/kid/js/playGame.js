@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     $('.content').on('click', '#btnJogar', function () {
 
-        window.location.href = `../games/html/game${cdAtividade}/game${cdAtividade}.html`;
+        window.location.href = `../games/game${cdAtividade}/game${cdAtividade}.html`;
 
     });
 
