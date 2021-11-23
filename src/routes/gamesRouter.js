@@ -11,4 +11,6 @@ gamesRouter.get('/themeGame/', loginRequired, GamesController.FindOneTheme);
 
 gamesRouter.get('/', loginRequired, GamesController.OneGame);
 
+gamesRouter.post('/', loginRequired, GamesController.SendGameResult);
+
 export default gamesRouter;
