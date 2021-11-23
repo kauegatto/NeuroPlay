@@ -485,4 +485,14 @@ begin
     order by dt_inicio desc;
 end$$
 
+/* procedure pra inserir o jogo ta */
+Drop Procedure if exists inserirResultadoJogo$$
+Create Procedure inserirResultadoJogo(vLoginPaciente varchar(200), vCdAtividade int(128), 
+vCdAvaliacao int(2), vDtInicio DATE,vDtFim Date, vHoraInicio TIME ,vHoraFim TIME, vQtdNota varchar(2))
+begin
+insert into 
+    paciente_atividade
+values
+    (vLoginPaciente , vCdAtividade, vCdAvaliacao, vDtInicio, vHoraInicio, vDtFim, vHoraFim,vQtdNota);
+end$$
 Delimiter ;

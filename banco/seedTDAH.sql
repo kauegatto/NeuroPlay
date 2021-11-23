@@ -65,10 +65,10 @@ insert into usuario values ('maria@outlook.com', '(13) 99797-7433', md5('123'), 
 
 /* MASSA DE TESTE PACIENTE */
 
-insert into paciente values ('brunooliveira11@gmail.com', md5('123'), 'pedro@gmail.com', 'Enzo Oliveira');
-insert into paciente values ('thelmareis@hotmail.com', md5('123'), 'pedro@gmail.com', 'Rayssa Leal');
-insert into paciente values ('henriquefreittas@outlook.com', md5('123'), 'julio@hotmail.com', 'Carlos Eduardo');
-insert into paciente values ('reginasilva@gmail.com', md5('123'), 'julio@hotmail.com', 'Mellysa Reis');
+insert into paciente values ('enzo', md5('123'), 'pedro@gmail.com', 'Enzo Oliveira');
+insert into paciente values ('rayssaleal', md5('123'), 'pedro@gmail.com', 'Rayssa Leal');
+insert into paciente values ('cadu', md5('123'), 'julio@hotmail.com', 'Carlos Eduardo');
+insert into paciente values ('melzinha123', md5('123'), 'julio@hotmail.com', 'Mellysa Reis');
 
 /* MASSA DE TESTE ATIVIDADE */
 
@@ -85,18 +85,18 @@ insert into atividade values (10, 'Que continente é esse?', 'Tente descobrir na
 
 /* MASSA DE TESTE PACIENTE_ATIVIDADE */
 
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 1, 1, '2021/09/07', '14:00:00', '2021/09/07', '14:20:00', 5);
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 4, 3, '2021/09/08', '15:00:00', '2021/09/08', '15:30:00', 2);
-insert into paciente_atividade values ('brunooliveira11@gmail.com', 2, 1, '2021/09/07', '15:00:00', '2021/09/07', '15:20:00', 2);
+insert into paciente_atividade values ('enzo', 1, 1, '2021/09/07', '14:00:00', '2021/09/07', '14:20:00', 5);
+insert into paciente_atividade values ('enzo', 4, 3, '2021/09/08', '15:00:00', '2021/09/08', '15:30:00', 2);
+insert into paciente_atividade values ('enzo', 2, 1, '2021/09/07', '15:00:00', '2021/09/07', '15:20:00', 2);
 
 /* MASSA DE TESTE VIDEO_PACIENTE */
 
-insert into video_paciente values (1, 'brunooliveira11@gmail.com', 1, 1);
-insert into video_paciente values (2, 'brunooliveira11@gmail.com', 2, 1);
-insert into video_paciente values (3, 'thelmareis@hotmail.com', 1, 1);
-insert into video_paciente values (4, 'thelmareis@hotmail.com', null, 0);
-insert into video_paciente values (1, 'henriquefreittas@outlook.com', null, 0);
-insert into video_paciente values (2, 'henriquefreittas@outlook.com', null, 0);
-insert into video_paciente values (4, 'reginasilva@gmail.com', null, 0);
-insert into video_paciente values (5, 'reginasilva@gmail.com', null, 0);
+insert into video_paciente values (1, 'enzo', 1, 1);
+insert into video_paciente values (2, 'enzo', 2, 1);
+insert into video_paciente values (3, 'rayssaleal', 1, 1);
+insert into video_paciente values (4, 'rayssaleal', null, 0);
+insert into video_paciente values (1, 'cadu', null, 0);
+insert into video_paciente values (2, 'cadu', null, 0);
+insert into video_paciente values (4, 'melzinha123', null, 0);
+insert into video_paciente values (5, 'melzinha123', null, 0);
 
