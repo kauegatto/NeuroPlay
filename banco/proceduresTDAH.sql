@@ -270,14 +270,14 @@ end$$
 
 /* Função que retorna o tema de menor dificultade de um paciente  */
 
-Drop Function if exists menorDificultade$$
+Drop Function if exists menorDificuldade$$
 
-Create Function menorDificultade(vEmailPaciente varchar(200)) returns varchar(200)
+Create Function menorDificuldade(vEmailPaciente varchar(200)) returns varchar(200)
 begin
 
 	declare menorDif varchar(200);
 
-	select 
+	select
 		t.nm_tema 
 	into
 		menorDif
@@ -292,17 +292,19 @@ begin
 	where
 		pa.cd_avaliacao = 1 and pa.nm_login_paciente = vEmailPaciente
 	group by
-		t.nm_tema;
-
+		t.nm_tema
+	order by
+		pa.dt_fim desc
+	limit 1;
 	return menorDif;
 
 end$$
 
 /* Função que retorna o tema de menor dificultade de um paciente */
 
-Drop function if exists maiorDificultade$$
+Drop function if exists maiorDificuldade$$
 
-Create Function maiorDificultade(vEmailPaciente varchar(200)) returns varchar(200)
+Create Function maiorDificuldade(vEmailPaciente varchar(200)) returns varchar(200)
 begin
 
 	declare maiorDif varchar(200);
@@ -401,9 +403,9 @@ Create procedure relatorioPaciente(vEmailPaciente varchar(200))
 begin
 
 	select 
-			p.nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificultade(vEmailPaciente) as menorDif,
+			p.nm_paciente, qtdAtividadePaciente(vEmailPaciente) as qtdAtividade, menorDificuldade(vEmailPaciente) as menorDif,
 
-			maiorDificultade(vEmailPaciente) as maiorDif, 
+			maiorDificuldade(vEmailPaciente) as maiorDif, 
             
             time_format( SEC_TO_TIME( SUM( TIME_TO_SEC( timediff(cast(concat(pa.dt_fim, ' ', pa.hr_fim) as datetime), 
 			cast(concat(pa.dt_inicio, ' ', pa.hr_inicio) as datetime))  ) ) ),'%H:%i:%s') as tempoDiff,
