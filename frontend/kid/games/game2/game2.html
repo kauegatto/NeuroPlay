@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../css/grid.css">
   <link rel="stylesheet" href="../../css/stdLayout.css">
+  <link rel="stylesheet" href="./game2.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <script src="../../../lib/jquery.js"></script>
   <script src="../terminarAtividade.js"></script>
-  <script src="js/game1.js"></script>
+  <script src="game2.js" defer></script>
   <!--change according to page.-->
   <title>TDAHmigo</title>
 </head>
@@ -23,8 +24,85 @@
       <img src="../../../img/logo.png" style="height:100px;" class="logo">
     </div>
     <div class="Body">
-      <div class="content">
+      <div class="content" style="min-height: 480px">
+        <div id="tituloAtividade">
+          <h1>Selecione duas imagens iguais</h1>
+          <main class="memory-game">
 
+            <div class="card" data-card="gato">
+              <img src="./img/1.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="ovelha">
+              <img src="./img/2.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="passaro">
+              <img src="./img/3.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="jacare">
+              <img src="./img/4.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="macaco">
+              <img src="./img/5.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="tatu">
+              <img src="./img/6.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="gato">
+              <img src="./img/1.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="ovelha">
+              <img src="./img/2.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="passaro">
+              <img src="./img/3.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="jacare">
+              <img src="./img/4.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+            <div class="card" data-card="macaco">
+              <img src="./img/5.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+
+            <div class="card" data-card="tatu">
+              <img src="./img/6.png" alt="Face da carta" class="card-front">
+              <img src="./img/box.png" alt="Verso da carta" class="card-back">
+            </div>
+          </main>
+        </div>
+
+        <div class="finalizarAtividade" style="display: none;">
+          <h1>O que você achou da atividade?</h1>
+          <div class=" avaliacoes" style="margin: 0 auto;">
+            <div class="terminar" id="1" style="display: inline-block;max-width: 27%;margin-right: 15px;">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Happy_smiley_face.png/480px-Happy_smiley_face.png"
+                width="60px" style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-7px;">Fácil</p>
+            </div>
+            <div class="terminar" id="2" style="display: inline-block;max-width: 27%;margin-right: 15px;">
+              <img
+                src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55321/neutral-face-emoji-clipart-md.png"
+                width="60px" style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-13px;">Média</p>
+            </div>
+            <div class="terminar" id="3" style="display: inline-block;max-width: 27%;">
+              <img src="https://www.pngarts.com/files/1/Sad-Face-Free-PNG-Image.png" width="60px"
+                style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-13px;">Difícil</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="Footer">
         <div class="Games">
