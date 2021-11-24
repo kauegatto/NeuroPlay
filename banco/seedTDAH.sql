@@ -72,8 +72,8 @@ insert into paciente values ('melzinha123', md5('123'), 'julio@hotmail.com', 'Me
 
 /* MASSA DE TESTE ATIVIDADE */
 
-insert into atividade values (1, 'Que animal é esse?', 'Tente descobrir, nas imagens abaixo que animal é este!', 1, 1);
-insert into atividade values (2, 'Que animal eu sou?', 'Caminho devagar, mas muito segura, Com a casa nas costas sou a…', 5, 1);
+insert into atividade values (1, 'De quem é esse som?', 'Tente descobrir que animal faz esse som!!', 1, 1);
+insert into atividade values (2, 'Que animal é esse?', 'Tente clicar em animais iguais nesse incrível jogo da memória!', 5, 1);
 insert into atividade values (3, 'Qual é a letra inicial?', 'Qual dessas figuras começam com a letra A?', 1, 2);
 insert into atividade values (4, 'Quais são as vogais?', 'Tente acertar as vogais de nosso alfabeto!', 1, 2);
 insert into atividade values (5, 'Qual a ordem correta?', 'Tente acertar a ordem correta dos números de 1 até 10!', 3, 3);

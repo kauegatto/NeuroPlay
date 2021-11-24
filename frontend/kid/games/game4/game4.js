@@ -13,17 +13,11 @@ $(document).ready(function () {
     if (contador == 3) {
       $(".finalizarAtividade").show()
       $("#TituloAtividade").hide();
-    } /*como so tem 3 etapas a quarta é justament mostrar a tela de avaliar*/
+    }
   });
   $('.terminar').on("click", function () {
     let cdAvaliacao = $(this).attr('id');
-    terminarAtividade.terminarAtividade(3, cdAvaliacao);
-    /*primeiro parametro é o id do jogo, segundo eh a dificuldade*/
-    /* 
-       1 facil 
-       2 medio
-       3 dificil
-    */
+    terminarAtividade.terminarAtividade(4, cdAvaliacao);
   });
 });
 

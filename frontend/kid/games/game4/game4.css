@@ -1,13 +1,12 @@
 button{
-  width: 50px;
+  width: 65px;
   border-radius:10px;
   padding: 20px;
   font-family: Fredoka One;
   border-color: rgb(109, 109, 109);
   margin: 40px auto;
-
 }
 .botoes{
   width: 80%;
-  margin-left: 80px;
+  margin-left: 65px;
 }
