@@ -27,6 +27,14 @@ class GamesController {
         return;
     }
 
+    async SendGameResult(req, res) {
+        const loggedUser = req.loggedUser;
+        const { cdAtividade, cdAvaliacao, dtInicio, hrInicio, dtFim, hrFim, qtdNota } = req.body;
+        const response = await gamesModel.InsertGameResult(loggedUser, cdAtividade, cdAvaliacao, dtInicio, hrInicio, dtFim, hrFim, qtdNota);
+        res.status(response[0]);
+        res.json(response[1]);
+        return;
+    }
 }
 
 export default new GamesController();
