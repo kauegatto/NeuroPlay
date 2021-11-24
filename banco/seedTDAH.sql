@@ -82,6 +82,7 @@ insert into atividade values (7, 'Cores!', 'Tente acertar as duas cores iguais!'
 insert into atividade values (8, 'Qual cor é essa?', 'Tente descobrir, nas figuras abaixo que cor é esta!', 1, 4);
 insert into atividade values (9, 'Que país é esse?', 'Tente descobrir na imagem dessa bandeira, que país é esse!', 1 ,5);
 insert into atividade values (10, 'Que continente é esse?', 'Tente descobrir na imagem que continente é esse!', 1 ,5);
+insert into atividade values (11 , 'Ache o erro!', 'Tente descobrir, qual imagem não é um animal', 4 , 1);
 
 /* MASSA DE TESTE PACIENTE_ATIVIDADE */
 
