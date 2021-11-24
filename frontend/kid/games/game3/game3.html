@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/grid.css">
+  <link rel="stylesheet" href="../../css/stdLayout.css">
+  <link rel="stylesheet" href="game3.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <script src="../../../lib/jquery.js"></script>
+  <script src="../terminarAtividade.js"></script>
+  <script src="game1.js"></script>
+  <!--change according to page.-->
+  <title>TDAHmigo</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="Header">
+      <img src="../../../img/logo.png" style="height:100px;" class="logo">
+    </div>
+    <div class="Body">
+      <div class="content">
+        <h1 id="TituloAtividade">Qual a primeira letra dessa imagem?</h1>
+        <div class="question">
+          <img src="img/1.png" width="120px" class="certa" style="display: block;margin: 0 auto;" />
+          <div class="botoes">
+            <button>I</button>
+            <button class="certo">J</button>
+            <button>K</button>
+          </div>
+        </div>
+        <div class="question">
+          <img src="img/2.png" width="120px" class="certa" style="display: block;margin: 0 auto;" />
+          <div class="botoes">
+            <button>I</button>
+            <button class="certo">J</button>
+            <button>K</button>
+          </div>
+        </div>
+        <div class="question">
+          <img src="img/2.png" width="120px" class="certa" style="display: block;margin: 0 auto;" />
+          <div class="botoes">
+            <button class="certo">C</button>
+            <button>N</button>
+            <button>P</button>
+          </div>
+        </div>
+        <div class="finalizarAtividade" style="display: none;">
+          <h1>O que você achou da atividade?</h1>
+          <div class=" avaliacoes" style="margin: 0 auto;">
+            <div class="terminar" id="1" style="display: inline-block;max-width: 27%;margin-right: 15px;">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Happy_smiley_face.png/480px-Happy_smiley_face.png"
+                width="60px" style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-7px;">Fácil</p>
+            </div>
+            <div class="terminar" id="2" style="display: inline-block;max-width: 27%;margin-right: 15px;">
+              <img
+                src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55321/neutral-face-emoji-clipart-md.png"
+                width="60px" style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-13px;">Média</p>
+            </div>
+            <div class="terminar" id="3" style="display: inline-block;max-width: 27%;">
+              <img src="https://www.pngarts.com/files/1/Sad-Face-Free-PNG-Image.png" width="60px"
+                style="display: block;margin: 0 auto;position: relative;left: 5px;">
+              <p style="position: relative;left:-13px;">Difícil</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Footer">
+        <div class="Games">
+          <a href="../../../kid/html/games.html">
+            <div>
+              <img src="../../../img/games.png" class="footerIcon">
+              <p class="footerText">Jogar</p>
+            </div>
+          </a>
+        </div>
+        <div class="Learn">
+          <a href="../../../kid/html/learn.html">
+            <div>
+              <img src="../../../img/learn.png" class="footerIcon">
+              <p class="footerText">Aprender</p>
+            </div>
+          </a>
+        </div>
+        <div class="Leave">
+          <a href="../../../Login/login.html">
+            <div>
+              <img src="../../../img/leave.png" class="footerIcon">
+              <p class="footerText">Sair</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>
