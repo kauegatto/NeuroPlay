@@ -70,7 +70,7 @@ class GamesModel {
             return [500, { "msg": "Não foram enviados todos os campos necessários para registrar sua atividade" }];
         }
         if (!qtdNota) {
-            qtdNota = "";
+            qtdNota = 0;
         }
         const query = `CALL inserirResultadoJogo('${loggedUser}','${cdAtividade}','${cdAvaliacao}','${dtInicio}','${dtFim}','${hrInicio}','${hrFim}','${qtdNota}');`;
         try {
