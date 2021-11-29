@@ -1,3 +1,4 @@
+SET GLOBAL log_bin_trust_function_creators = 1;
 Delimiter $$
 
 /* Procedure para login do usuario */
@@ -117,11 +118,13 @@ Create Procedure dadosAtividade(vCdTema int(11))
 begin
 
 select 
-	cd_atividade, nm_atividade 
+	a.cd_atividade, a.nm_atividade, t.nm_tema
 from 
-	atividade 
+	atividade a
+JOIN tema t 
+ON (a.cd_tema = t.cd_tema)
 where 
-	cd_tema = vCdTema;
+	a.cd_tema = vCdTema;
 end$$
 
 /* Procedure para consultar todas as info de uma atividade */
@@ -160,9 +163,10 @@ Drop procedure if exists videoPacienteTema$$
 
 Create procedure videoPacienteTema(vCdTema int)
 begin
-
-	select cd_video, nm_video from video where cd_tema = vCdTema;
-
+	select v.cd_video, v.nm_video, t.nm_tema
+	from video v join tema t
+    on(v.cd_tema = t.cd_tema)
+    where v.cd_tema = vCdTema;
 end$$
 
 Drop procedure if exists videoSelecionado$$
