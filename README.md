@@ -1,5 +1,8 @@
 ### 🎮 NeuroPlay 🕹
 
+# Some examples of the system screens. / Alguns exemplos das telas do sistema
+<img src="https://github.com/kauegatto/NeuroPlay/blob/main/frontend/img/Exemplo_telas.png" alt="picture of Douglas Reis" width="200"/>
+
 # PT-BR
 🧒🏿🧒🧒🏻 Projeto que foca em ajudar crianças neurodivergentes através de jogos 🧒🏾🧒🏼🧒🏽
 
