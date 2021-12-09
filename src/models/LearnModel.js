@@ -6,9 +6,7 @@ class LearnModel {
         const query = `CALL dadosTema();`;
 
         try {
-            const connection = await dbConnection.openConnection();
-            const [rows, fields, err] = await connection.execute(query);
-            dbConnection.closeConnection(connection);
+            const [rows, err] = await dbConnection.executeQuery(query);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -28,9 +26,7 @@ class LearnModel {
         const query = `CALL videoPacienteTema('${cdTema}');`;
 
         try {
-            const connection = await dbConnection.openConnection();
-            const [rows, fields, err] = await connection.execute(query);
-            dbConnection.closeConnection(connection);
+            const [rows, err] = await dbConnection.executeQuery(query);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }
@@ -50,9 +46,7 @@ class LearnModel {
         const query = `CALL videoSelecionado('${cdVideo}');`;
 
         try {
-            const connection = await dbConnection.openConnection();
-            const [rows, fields, err] = await connection.execute(query);
-            dbConnection.closeConnection(connection);
+            const [rows, err] = await dbConnection.executeQuery(query);
             if (!err) {
                 return [200, { "msg": rows[0] }];
             }

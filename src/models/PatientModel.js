@@ -1,11 +1,9 @@
 import dbConnection from '../db/DbConnection.js';
 class PatientModel {
   async userCanManipulatePatient(responsibleEmail, patientLogin) {
-    const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ? AND nm_email_usuario = ?;';
+    const query = `SELECT * FROM paciente WHERE nm_login_paciente = '${patientLogin}' AND nm_email_usuario = '${responsibleEmail}';`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query, [patientLogin, responsibleEmail]);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (rows[0] && !err) {
         return true;
       }
@@ -21,11 +19,9 @@ class PatientModel {
     }
   }
   async patientExists(login) {
-    const query = 'SELECT * FROM paciente WHERE nm_login_paciente = ?;';
+    const query = `SELECT * FROM paciente WHERE nm_login_paciente = '${login}';`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query, [login]);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (rows[0] && !err) {
         return true;
       }
@@ -42,9 +38,7 @@ class PatientModel {
   async validateLogin(email, password) {
     const query = `CALL loginPaciente('${email}','${password}');`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       /* rows 0;0 é p pegar exatamente os dados do primeiro resultado dos resultados, mas como só tem 1, vai dar certo*/
       if (rows[0][0] && !err) {
         return true;
@@ -61,9 +55,7 @@ class PatientModel {
   async getPatientName(login) {
     const query = `call getNomePaciente('${login}')`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, rows[0][0]];
       }
@@ -83,9 +75,7 @@ class PatientModel {
     }
     const query = `call inserirPaciente('${login}','${password}','${name}','${loggedUser}')`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": "Paciente criado com sucesso" }];
       }
@@ -103,9 +93,7 @@ class PatientModel {
     const query = `call relatorioPaciente('${email}')`;
 
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": rows[0] }];
       }
@@ -124,9 +112,7 @@ class PatientModel {
 
     const query = `call detalhesAtividade('${email}')`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": rows[0] }];
       }
@@ -144,9 +130,7 @@ class PatientModel {
   async findAllFromUser(email) {
     const query = `call nomePaciente('${email}')`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         if (rows[0][0]) {
           return [200, rows[0]];
@@ -173,9 +157,7 @@ class PatientModel {
 
     const query = `CALL alterarSenhaPaciente('${patientLogin}', '${newPassword}');`;
     try {
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": "Senha alterada com sucesso" }];
       }
@@ -195,9 +177,7 @@ class PatientModel {
       if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
         return [401, { "msg": "Você não é o responsável por esse paciente" }];
       }
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": "Nome de usuário alterado com sucesso" }];
       }
@@ -216,9 +196,7 @@ class PatientModel {
         return [401, { "msg": "Você não é o responsável por esse paciente" }];
       }
       const query = `CALL alterarDadosPaciente('${patientLogin}','${newPassword}','${newUsername}');`;
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       return [200, { "msg": "Dados alterados com sucesso" }];
     }
     catch (e) {
@@ -232,9 +210,7 @@ class PatientModel {
       if (!this.userCanManipulatePatient(loggedUser, patientLogin)) {
         return [401, { "msg": "Você não é o responsável por esse paciente" }];
       }
-      const connection = await dbConnection.openConnection();
-      const [rows, fields, err] = await connection.execute(query);
-      dbConnection.closeConnection(connection);
+      const [rows, err] = await dbConnection.executeQuery(query);
       if (!err) {
         return [200, { "msg": "Paciente deletado com sucesso" }];
       }

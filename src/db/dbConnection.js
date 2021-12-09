@@ -3,7 +3,7 @@ import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 
 class DbConnection {
-    async openConnection() {
+    static async openConnection() {
         // create the connection
         try {
             const connection = await mysql.createConnection({
@@ -20,8 +20,21 @@ class DbConnection {
             throw ("Error connecting to db");
         }
     }
-    async closeConnection(connection) {
+    static async closeConnection(connection) {
         await connection.end();
+    }
+    async executeQuery(query) {
+        let rows, fields, err;
+        try {
+            const connection = await DbConnection.openConnection();
+            [rows, fields, err] = await connection.query(query);
+            await DbConnection.closeConnection(connection);
+            return [rows, err]; /*retorna sempre resposta e se tem ou não erros*/
+        }
+        catch (e) {
+            console.log(e);
+            return ["", "Connection Error"];
+        }
     }
 }
 export default new DbConnection();
