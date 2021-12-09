@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <img src="../img/logo.png" class="logo">
+    <img src="../img/logo.png" height="100px" class="logo">
     <h1>Bem Vindo!!</h1>
     <div class="divCampo">
         <label for="email">Email:</label>
@@ -26,14 +26,13 @@
         <input type="password" name="password" id="passwordInput">
     </div>
     <div class="divCampo">
-
         <input type="radio" class="cbxLogin" id="cbxCrianca" name="cbxLogin" value="1">
 
-        <label for="loginPaciente" class="lblLogin">Criança</label>
+        <label id="labelPaciente" for="loginPaciente" class="lblLogin">Criança</label>
          
         <input type="radio" class="cbxLogin" id="cbxAdulto" class="lblLogin" name="cbxLogin" value="0">
 
-        <label for="loginUsuario">Adulto</label>
+        <label id="labelResponsavel" for="loginUsuario">Adulto</label>
     </div>
     <button class="btnEntrar" id="btnEntrar">Entrar</button>
     <a href="../Register/register.html">Não tem uma conta? <span class="amarelo">Crie uma</span></a>
