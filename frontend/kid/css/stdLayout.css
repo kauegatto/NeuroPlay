@@ -67,6 +67,7 @@ h1{
 .content{
     width: 90%;
     margin: 0 auto;
+    margin-bottom:75px; /*Para conseguir rolar para baixo sem que o footer fixed atrapalhe!*/
     min-height: 300px;
 }
 .contentBlock{
