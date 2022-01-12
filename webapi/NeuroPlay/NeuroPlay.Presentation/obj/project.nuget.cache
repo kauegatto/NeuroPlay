@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "cNG/Mc3WvcWwNZvo0wrwH+dkyQ9Q2DTiJlcAgtrWusia8ZdAWrBxlJQ/iYyNp4veRXrmnDcA6AIgqunz8cW40Q==",
+  "success": true,
+  "projectFilePath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Presentation\\NeuroPlay.Presentation.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kaue\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\kaue\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\kaue\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\kaue\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\kaue\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\kaue\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

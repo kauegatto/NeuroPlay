@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "986f82aa-3d0a-4d96-8eb2-d8970e4f601c": {
+      "ProjectGuid": "986f82aa-3d0a-4d96-8eb2-d8970e4f601c",
+      "DisplayName": "NeuroPlay.Data",
+      "ColorIndex": 0
+    },
+    "2f68cc18-f479-4624-bb69-cc670edfba76": {
+      "ProjectGuid": "2f68cc18-f479-4624-bb69-cc670edfba76",
+      "DisplayName": "NeuroPlay.Core",
+      "ColorIndex": 1
+    },
+    "8a3546fa-2674-4337-b9aa-71d3abd651bd": {
+      "ProjectGuid": "8a3546fa-2674-4337-b9aa-71d3abd651bd",
+      "DisplayName": "NeuroPlay.Presentation",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
