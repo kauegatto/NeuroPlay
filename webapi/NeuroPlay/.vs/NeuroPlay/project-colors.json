@@ -15,7 +15,12 @@
       "ProjectGuid": "8a3546fa-2674-4337-b9aa-71d3abd651bd",
       "DisplayName": "NeuroPlay.Presentation",
       "ColorIndex": 2
+    },
+    "b5d5d57e-3b62-4f1f-a985-ee72868171f4": {
+      "ProjectGuid": "b5d5d57e-3b62-4f1f-a985-ee72868171f4",
+      "DisplayName": "NeuroPlay.Test",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

@@ -1,0 +1,12 @@
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\bin\Debug\net6.0\NeuroPlay.Core.deps.json
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\bin\Debug\net6.0\NeuroPlay.Core.dll
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\bin\Debug\net6.0\ref\NeuroPlay.Core.dll
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\bin\Debug\net6.0\NeuroPlay.Core.pdb
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.csproj.AssemblyReference.cache
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.AssemblyInfoInputs.cache
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.AssemblyInfo.cs
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.csproj.CoreCompileInputs.cache
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.dll
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\ref\NeuroPlay.Core.dll
+F:\Kaue\dev\neuroplay\webapi\NeuroPlay\NeuroPlay.Core\obj\Debug\net6.0\NeuroPlay.Core.pdb

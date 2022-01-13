@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\MySql\" />
     <Folder Include="Repositories\Redis\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NeuroPlay.Core\NeuroPlay.Core.csproj" />
   </ItemGroup>
 
 </Project>
