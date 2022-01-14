@@ -13,7 +13,10 @@
 2. Rode as procedures (proceduresTDAH.sql)
 3. Rode as seeds (seedTDAH.sql)
 ### 💻 1.2 Rodando o backend:
-#### 1.2.1 Crie um dotenv: 
+#### 1.2.1 - Backend em C# (Obtido na main)
+##### 1.2.1.1 Instale o .Net 6.0
+#### 1.2.2 - Backend em NodeJS+Express (Obtido na branch isolada)
+##### 1.2.2.1 Crie um dotenv: 
 O arquivo dotenv é um arquivo que guarda informações importantes e sensíveis do seu código, como senha do JWT e dados do seu banco de dados.
 Para criar seu arquivo dotenv, entre na pasta de backend e coloque lá dentro um arquivo chamado exatamente ".env", você pode configurar o seu nesse formato:
 ```
