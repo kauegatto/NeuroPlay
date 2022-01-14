@@ -9,7 +9,6 @@ builder.Services.AddSingleton<MySQLConfig>(new MySQLConfig()
 {
     ConnectionString = builder.Configuration.GetConnectionString("MySQL")
 });
-
 builder.Services.AddScoped<IUserRepository, MySQLUserRepository>();
 builder.Services.AddScoped<IPatientRepository, MySQLPatientRepository>();
 builder.Services.AddScoped<UserService>();

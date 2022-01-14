@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using NeuroPlay.Core.IRepositories;
+using NeuroPlay.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,18 @@ namespace NeuroPlay.Data.Repositories.MySql
         {
             _config=config;
             _connection = new MySqlConnection(_config.ConnectionString);
+         
         }
 
-        void IPatientRepository.Add()
+
+        void IPatientRepository.Add(Patient newPatient)
         {
-            
+            throw new NotImplementedException();
+        }
+
+        void IPatientRepository.ChangePassword(string loggedPatient, string oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
         }
 
         void IPatientRepository.Delete(string login)
@@ -29,12 +37,38 @@ namespace NeuroPlay.Data.Repositories.MySql
             throw new NotImplementedException();
         }
 
-        void IPatientRepository.FindByPK(string login)
+        Patient IPatientRepository.FindByPK(string login)
         {
             throw new NotImplementedException();
         }
 
-        void IPatientRepository.Update()
+        Patient IPatientRepository.GetPatient(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        string IPatientRepository.GetPatientName(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        string IPatientRepository.GetPatientRecords(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPatientRepository.PatientExists(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        Patient IPatientRepository.Update(string loggedPatient, Patient updatedData)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPatientRepository.UserCanManipulatePatient(string userEmail, string patientLogin)
         {
             throw new NotImplementedException();
         }

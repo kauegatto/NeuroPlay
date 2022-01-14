@@ -28,7 +28,6 @@ namespace NeuroPlay.Core.Services
                 }
                 if (newUser.username == "Bolsonaro")
                 {
-
                     Console.WriteLine("bolsonaro ");
                     throw new Exception();
                 }
@@ -40,6 +39,33 @@ namespace NeuroPlay.Core.Services
                 Console.WriteLine("DEU ERRO "+ex.Message);
                 return null;
             }
+        }
+        public bool Delete(string email)
+        {
+            try
+            {
+                // if userExists 
+                // if loggedUser is  = email
+                return _userRepository.Delete(email);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+        public bool ValidateLogin(string email, string password)
+        {
+            if (email == null || password == null)
+            {
+                throw new Exception();
+            }
+            return _userRepository.ValidateLogin(email, password);
+        }
+        public bool UserExists(string email)
+        {
+            if(email == null) { throw new Exception(); }
+            return _userRepository.UserExists(email);   
         }
     }
 }

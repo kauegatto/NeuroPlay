@@ -14,4 +14,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NeuroPlay.Core\NeuroPlay.Core.csproj" />
+    <ProjectReference Include="..\NeuroPlay.Data\NeuroPlay.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,6 +4,124 @@
     "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Test\\NeuroPlay.Test.csproj": {}
   },
   "projects": {
+    "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj",
+        "projectName": "NeuroPlay.Core",
+        "projectPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj",
+        "packagesPath": "C:\\Users\\kaue\\.nuget\\packages\\",
+        "outputPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kaue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\NeuroPlay.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\NeuroPlay.Data.csproj",
+        "projectName": "NeuroPlay.Data",
+        "projectPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\NeuroPlay.Data.csproj",
+        "packagesPath": "C:\\Users\\kaue\\.nuget\\packages\\",
+        "outputPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kaue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj": {
+                "projectPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.27, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Test\\NeuroPlay.Test.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +145,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj": {
+                "projectPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Core\\NeuroPlay.Core.csproj"
+              },
+              "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\NeuroPlay.Data.csproj": {
+                "projectPath": "F:\\Kaue\\dev\\neuroplay\\webapi\\NeuroPlay\\NeuroPlay.Data\\NeuroPlay.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

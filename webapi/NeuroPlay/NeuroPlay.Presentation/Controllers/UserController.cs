@@ -35,7 +35,6 @@ namespace NeuroPlay.Presentation.Controllers
         {
             return _userService.Add(newUser);
         }
-
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

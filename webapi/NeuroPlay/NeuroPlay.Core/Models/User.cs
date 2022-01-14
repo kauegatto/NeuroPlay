@@ -17,7 +17,6 @@ namespace NeuroPlay.Core.Models
         [Required]
         public string username { get; set; }
         public string phoneNumber { get; set; }
-        
         public int userType { get; set; }
     }
 }

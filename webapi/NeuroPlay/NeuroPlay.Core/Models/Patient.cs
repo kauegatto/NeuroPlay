@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NeuroPlay.Core.Models
 {
-    internal class Patient
+    public class Patient
     {
         [Required]
         public string login { get; set; }
