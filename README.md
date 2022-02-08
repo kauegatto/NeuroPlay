@@ -1,7 +1,10 @@
 ### 🎮 NeuroPlay 🕹
 
+
 ## Some examples of the system screens. / Alguns exemplos das telas do sistema
 <img src="https://github.com/kauegatto/NeuroPlay/blob/main/frontend/img/Exemplo_telas.png" alt="picture of Douglas Reis" width="500"/>
+
+
 
 # PT-BR
 🧒🏿🧒🧒🏻 Projeto que foca em ajudar crianças neurodivergentes através de jogos 🧒🏾🧒🏼🧒🏽
@@ -42,45 +45,13 @@ _Updates na azure também podem fazer com que o deploy não funcionem. Além dis
 Obrigado 😄
 
 # EN
-🧒🏿🧒🧒🏻 Project that focuses on games to help neurodivergent kids 🧒🏾🧒🏼🧒🏽
-
-## ⚙ 1. Setup:
-
-### 🎲 1.1 Run the DB:
-1. Run base script (scriptTDAH.sql)
-2. Run procedures (proceduresTDAH.sql)
-3. Run seeds (seedTDAH.sql)
-### 💻 1.2 Run the backend:
-#### 1.2.1 Create a dotenv: 
-First of all you should put a .env file in order to make the tokens router work, you may setup yours as it follows:
-```
-TOKEN_SECRET=SENHASECRETA123 
-TOKEN_EXPIRATION=7d
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=root
-DB_DEFAULTDATABASE=neuroplay-db
-```
-#### 1.2.2 Execute the server:
-1. Enter the backend folder
-2. Run ```npm i``` in order to get dependencies
-3. Run ```npm run dev```.
-P.S: We've tested node 17.x locally( we were also using sucrase ) and node 14.x on azure, which was the version we've made most tests on and we reccomend. 
-
-#### 1.2.3 Know what you can do:
-The documentation for the routes can be found in the [project's wiki page](https://github.com/kauegatto/NeuroPlay/wiki) here on github.
-### 2.0 P.S :
-The backend for this project was deployed on microsoft azure as an appservice, which is why we divided the branches in the way it is, therefore avoiding unnecessary triggers on the github actions. That being said, a future implementation on AWS might not work as intented, I'd recommend you checking for the environment variables there and for the remote-db state.
-
-_Updates on azure might also make the deploy unreliable, yet probably easy to repair. Besides that, we only tested the deploy with the necessary content, where the backend folder was the root and package.json was on it, therefore removing the needs of a cd/backend, which may stop the application from deploying correctly if you set-up the deploy differently_
-
-Thank you 😄
+// Will be reuploaded but on wiki (really soon) !!
 
 # Acknowledgements:
 1. First of all I'd like to thank my friend [Vinicius Vassao](https://github.com/vassourita/) which helped us a lot in this project
 2. We'd also like to thank [Luiz Otavio Miranda](https://www.youtube.com/otaviomiranda/videos), which provides many node classes for free in youtube, We sure learned a lot from him.
 
-# Authors: 
+## Authors: 
 <div>
 Douglas Reis - Kaue Gatto<br/>
 <img src="https://avatars.githubusercontent.com/u/59988180?v=4" alt="picture of Douglas Reis" width="100"/>
