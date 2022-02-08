@@ -6,45 +6,59 @@ using NeuroPlay.Core.Services;
 
 namespace NeuroPlay.Presentation.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+  [Route("[controller]")]
+  [ApiController]
+  public class UserController : ControllerBase
+  {
+    private readonly UserService _userService;
+    public UserController(UserService userService)
     {
-        private readonly UserService _userService;
-        public UserController(UserService userService)
-        {
-            _userService = userService;
-        }
-
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }   
-
-        // [GET] /User/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-
-        [HttpPost]
-        public User Post(User newUser)
-        {
-            return _userService.Add(newUser);
-        }
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+      _userService = userService;
     }
+
+    [HttpGet]
+    public IEnumerable<string> Get()
+    {
+      return new string[] { "value1", "value2" };
+    }
+
+    // [GET] /User/5
+    [HttpGet("{id}")]
+    public string Get(int id)
+    {
+      return "value";
+    }
+    [HttpPost]
+    public IActionResult Post(User newUser)
+    {
+      try
+      {
+        var result = _userService.Add(newUser);
+        if (result.Succeded)
+        {
+          return Ok(result.Data);
+        }
+        else
+        {
+          return BadRequest(result.Error);
+        }
+      }
+      catch
+      {
+        return StatusCode(500, new { msg = "internal server error" });
+      }
+
+    }
+    // PUT api/<UserController>/5
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] string value)
+    {
+    }
+
+    // DELETE api/<UserController>/5
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+    }
+  }
 }

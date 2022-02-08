@@ -15,47 +15,31 @@ namespace NeuroPlay.Core.Services
     {
       _userRepository = userRepository;
     }
-    public User Add(User newUser)
+    public Result<User, string> Add(User newUser)
     {
-      try
+      if (newUser.Email == null || newUser.Password == null)
       {
-        if (!(newUser.Password.Length >= 6))
-        {
-          Console.WriteLine("senha curta");
-          throw new Exception();
-        }
-        if (newUser.Username == "Bolsonaro")
-        {
-          Console.WriteLine("bolsonaro ");
-          throw new Exception();
-        }
-        _userRepository.Add(newUser);
-        return newUser;
+        return Result<User, string>.Fail("Login or password cannot be null");
       }
-      catch
+      if (newUser.Email.Length < 3 || newUser.Password.Length < 3)
       {
-        return new User("nao sei ", "oq", "colocar", "aqui", 1);
+        return Result<User, string>.Fail("Login or password cannot be less than 3 characters");
       }
+      return _userRepository.Add(newUser);
     }
-    public bool Delete(string email)
+    public Result Delete(string email)
     {
-      try
+      if (email == null)
       {
-        // if userExists 
-        // if loggedUser is  = email
-        return _userRepository.Delete(email);
+        return Result.Fail();
       }
-      catch (Exception)
-      {
-        return false;
-      }
-
+      return _userRepository.Delete(email);
     }
-    public bool ValidateLogin(string email, string password)
+    public Result ValidateLogin(string email, string password)
     {
       if (email == null || password == null)
       {
-        throw new Exception();
+        return Result.Fail();
       }
       return _userRepository.ValidateLogin(email, password);
     }

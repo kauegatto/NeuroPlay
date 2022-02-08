@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NeuroPlay.Core.IRepositories;
 using NeuroPlay.Core.Models;
 using MySql.Data.MySqlClient;
+using NeuroPlay.Core;
+
 namespace NeuroPlay.Data.Repositories.MySql
 {
   public class MySQLUserRepository : IUserRepository, IDisposable
@@ -22,78 +24,86 @@ namespace NeuroPlay.Data.Repositories.MySql
 
     public void Dispose()
     {
-      _connection.Close();
+      _connection.Close(); // this repository is injected as scoped so we don't need to close it after every method call
+    }
+    public Result<User, string> Add(User newUser)
+    {
+      string sqlCommand = "insert into usuario values (@Email, @PhoneNumber, md5(@Password), @Username, 1);";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Email", newUser.Email);
+      cmd.Parameters.AddWithValue("@PhoneNumber", newUser.PhoneNumber);
+      cmd.Parameters.AddWithValue("@Password", newUser.Password);
+      cmd.Parameters.AddWithValue("@Username", newUser.Username);
+      cmd.ExecuteNonQuery();
+      //exceptions will be catch on controllers and return internal server error
+      return Result<User, string>.Ok(newUser, null);
     }
 
-    void IUserRepository.Add(User newUser)
+    public Result<User, string> ChangePassword(string loggedUser, string oldPassword, string newPassword)
     {
-      try
+      throw new NotImplementedException();
+    }
+
+    public Result<User, string> ChangePhoneNumber(string loggedUser, string newPhoneNumber)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result<User, string> ChangeUsername(string loggedUser, string newUsername)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result Delete(string email)
+    {
+      if (email == null)
       {
-        _connection.Open();
-        string sqlCommand = "insert into usuario values (@Email, @PhoneNumber, md5(@Password), @Username, 1);";
-        MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
-        cmd.Parameters.AddWithValue("@Email", newUser.Email);
-        cmd.Parameters.AddWithValue("@PhoneNumber", newUser.PhoneNumber);
-        cmd.Parameters.AddWithValue("@Password", newUser.Password);
-        cmd.Parameters.AddWithValue("@Username", newUser.Username);
-        cmd.ExecuteNonQuery();
+        return Result.Fail();
       }
-      catch (Exception ex)
+      // if logged user != email, return fail
+      string sqlCommand = "DELETE from usuario where nm_email_usuario @Username";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Username", email);
+      cmd.ExecuteNonQuery();
+      return Result.Ok();
+    }
+    public Result<ICollection<User>, string> FindAll()
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result<User, string> FindByPK(string email)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result<ICollection<Patient>, string> FindPatients(string email)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result ValidateLogin(string email, string password)
+    {
+      if (email == null || password == null)
       {
-        throw ex;  //sei que isso aqui não é certo
+        return Result.Fail();
       }
-      _connection.Close();
-      return;
-    }
 
-    bool IUserRepository.ChangePassword(string loggedUser, string oldPassword, string newPassword)
-    {
-      throw new NotImplementedException();
-    }
-
-    bool IUserRepository.ChangePhoneNumber(string loggedUser, string newPhoneNumber)
-    {
-      throw new NotImplementedException();
-    }
-
-    bool IUserRepository.ChangeUsername(string loggedUser, string newUsername)
-    {
-      throw new NotImplementedException();
-    }
-
-    bool IUserRepository.Delete(string email)
-    {
-      try
+      bool hasRows;
+      string sqlCommand = "Select * from usuario where nm_email_usuario = @Email and nm_senha_usuario = md5(@Password)";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Email", email);
+      cmd.Parameters.AddWithValue("@Password", password);
+      MySqlDataReader reader = cmd.ExecuteReader();
+      reader.Read();
+      hasRows = reader.HasRows;
+      reader.Close();
+      if (hasRows)
       {
-        _connection.Open();
-        string sqlCommand = "DELETE from usuario where nm_email_usuario @Username";
-        MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
-        cmd.Parameters.AddWithValue("@Username", email);
-        cmd.ExecuteNonQuery();
+        return Result.Ok();
       }
-      catch (Exception ex)
-      {
-        return false;
-      }
-      _connection.Close();
-      return true;
+      else { return Result.Fail(); }
     }
-
-    void IUserRepository.FindAll()
-    {
-      throw new NotImplementedException();
-    }
-
-    void IUserRepository.FindByPK(string email)
-    {
-      throw new NotImplementedException();
-    }
-
-    void IUserRepository.FindPatients(string email)
-    {
-      throw new NotImplementedException();
-    }
-
     bool IUserRepository.UserExists(string email)
     {
       try
@@ -114,30 +124,5 @@ namespace NeuroPlay.Data.Repositories.MySql
       }
     }
 
-    bool IUserRepository.ValidateLogin(string email, string password)
-    {
-      try
-      {
-        bool hasRows;
-        string sqlCommand = "Select * from usuario where nm_email_usuario = @Email and nm_senha_usuario = md5(@Password)";
-        MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
-        cmd.Parameters.AddWithValue("@Email", email);
-        cmd.Parameters.AddWithValue("@Password", password);
-        MySqlDataReader reader = cmd.ExecuteReader();
-        reader.Read();
-        hasRows = reader.HasRows;
-        reader.Close();
-        if (hasRows)
-        {
-          return true;
-        }
-        else { return false; }
-      }
-      catch (Exception ex)
-      {
-        throw ex;  //sei que isso aqui não é certo
-      }
-
-    }
   }
 }

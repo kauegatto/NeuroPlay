@@ -9,13 +9,13 @@ namespace NeuroPlay.Core.Models
 {
   public class User
   {
-    public User(string email, string password, string username, string phonenumber, int usertype)
+    public User(string email, string password, string username, string phonenumber)
     {
       Email = email;
       Password = password;
       Username = username;
       PhoneNumber = phonenumber;
-      UserType = usertype;
+      UserType = 1;
     }
     public string Email { get; protected set; }
     public string Password { get; protected set; }

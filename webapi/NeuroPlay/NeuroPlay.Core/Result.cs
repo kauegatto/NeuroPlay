@@ -39,6 +39,7 @@ namespace NeuroPlay.Core
       return new Result<TData>(false, null);
     }
   }
+
   public class Result<TData, TError> : Result<TData>
   where TData : class
   {
