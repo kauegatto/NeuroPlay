@@ -1,7 +1,7 @@
 ### 🎮 NeuroPlay 🕹
 
 
-## Some examples of the system screens. / Alguns exemplos das telas do sistema
+### Some examples of the system screens. / Alguns exemplos das telas do sistema
 <img src="https://github.com/kauegatto/NeuroPlay/blob/main/frontend/img/Exemplo_telas.png" alt="picture of Douglas Reis" width="500"/>
 
 
