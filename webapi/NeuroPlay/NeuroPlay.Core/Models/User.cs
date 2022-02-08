@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace NeuroPlay.Core.Models
 {
-    public class User
+  public class User
+  {
+    public User(string email, string password, string username, string phonenumber, int usertype)
     {
-        [Required]
-        public string email { get; set; }
-        [Required]
-        [MinLength(6)]
-        public string password { get; set; }
-        [Required]
-        public string username { get; set; }
-        public string phoneNumber { get; set; }
-        public int userType { get; set; }
+      Email = email;
+      Password = password;
+      Username = username;
+      PhoneNumber = phonenumber;
+      UserType = usertype;
     }
+    public string Email { get; protected set; }
+    public string Password { get; protected set; }
+    public string Username { get; protected set; }
+    public string PhoneNumber { get; protected set; }
+    public int UserType { get; protected set; }
+  }
 }

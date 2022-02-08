@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NeuroPlay.Core.Models
+﻿namespace NeuroPlay.Core.Models
 {
-    public class Patient
+  public class Patient
+  {
+    public Patient(string login, string password, string username, string userEmail)
     {
-        [Required]
-        public string login { get; set; }
-        [Required]
-        public string password { get; set; }
-        [Required]
-        public string username { get; set; }
-        [Required]
-        public string userEmail{ get; set; }
-
-
+      Login = login;
+      Password = password;
+      Username = username;
+      UserEmail = userEmail;
     }
+    public string Login { get; protected set; }
+    public string Password { get; protected set; }
+    public string Username { get; protected set; }
+    public string UserEmail { get; protected set; }
+  }
 }
