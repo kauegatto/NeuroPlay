@@ -19,14 +19,14 @@ namespace NeuroPlay.Presentation.Controllers
     }
 
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult Get()
     {
       return new string[] { "value1", "value2" };
     }
 
     // [GET] /User/5
     [HttpGet("{id}")]
-    public string Get(int id)
+    public IActionResult Get(int id)
     {
       return "value";
     }
@@ -54,13 +54,13 @@ namespace NeuroPlay.Presentation.Controllers
     }
     // PUT api/<UserController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public IActionResult Put(User newUser)
     {
     }
 
     // DELETE api/<UserController>/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public IActionResult Delete(int id)
     {
     }
   }

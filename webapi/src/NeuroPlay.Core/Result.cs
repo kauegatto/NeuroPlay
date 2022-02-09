@@ -22,30 +22,32 @@ namespace NeuroPlay.Core
       return new Result(false);
     }
   }
-  public class Result<TData> : Result
-    where TData : class
-  {
-    public TData Data { get; }
-    public Result(bool succeded, TData data) : base(succeded)
-    {
-      Data = data;
-    }
-    public static Result<TData> Ok(TData data)
-    {
-      return new Result<TData>(true, data);
-    }
-    public static Result<TData> Fail()
-    {
-      return new Result<TData>(false, null);
-    }
-  }
-
-  public class Result<TData, TError> : Result<TData>
-  where TData : class
+  public class Result<TError> : Result
+    where TError : class, IError
   {
     public TError Error { get; }
-    public Result(bool succeded, TData data, TError error) : base(succeded, data)
+    public Result(bool succeded, TError error) : base(succeded)
     {
+      Error = error;
+    }
+    public static Result<TError> Ok()
+    {
+      return new Result<TError>(true, null);
+    }
+    public static Result<TError> Fail(TError error)
+    {
+      return new Result<TError>(false, error);
+    }
+  }
+  public class Result<TData, TError> : Result
+  where TData : class
+  where TError : IError
+  {
+    public TData Data { get; }
+    public TError Error { get; }
+    public Result(bool succeded, TData data, TError error) : base(succeded)
+    {
+      Data = data;
       Error = error;
     }
     public static Result<TData, TError> Ok(TData data, TError error)

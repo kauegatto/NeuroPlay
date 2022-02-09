@@ -39,17 +39,17 @@ namespace NeuroPlay.Data.Repositories.MySql
       return Result<User, string>.Ok(newUser, null);
     }
 
-    public Result<User, string> ChangePassword(string loggedUser, string oldPassword, string newPassword)
+    public Result ChangePassword(string loggedUser, string oldPassword, string newPassword)
     {
       throw new NotImplementedException();
     }
 
-    public Result<User, string> ChangePhoneNumber(string loggedUser, string newPhoneNumber)
+    public Result ChangePhoneNumber(string loggedUser, string newPhoneNumber)
     {
       throw new NotImplementedException();
     }
 
-    public Result<User, string> ChangeUsername(string loggedUser, string newUsername)
+    public Result ChangeUsername(string loggedUser, string newUsername)
     {
       throw new NotImplementedException();
     }
@@ -72,7 +72,7 @@ namespace NeuroPlay.Data.Repositories.MySql
       throw new NotImplementedException();
     }
 
-    public Result<User, string> FindByPK(string email)
+    public Result<string> FindByPK(string email)
     {
       throw new NotImplementedException();
     }
