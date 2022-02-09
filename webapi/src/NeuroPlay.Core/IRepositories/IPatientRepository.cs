@@ -2,17 +2,18 @@
 
 namespace NeuroPlay.Core.IRepositories
 {
-  public interface IPatientRepository
+  public interface IPatientRepository<TError>
+  where TError : class, IError
   {
-    Result<User, string> Add(Patient newPatient);
-    Result<User, string> Update(string loggedPatient, Patient updatedData);
+    Result<User, TError> Add(Patient newPatient);
+    Result<User, TError> Update(string loggedPatient, Patient updatedData);
     Result Delete(String login);
-    Result<User, string> FindByPK(String login);
+    Result<User, TError> FindByPK(String login);
     bool UserCanManipulatePatient(String userEmail, string patientLogin);
     bool PatientExists(String login);
-    Result<User, string> GetPatient(String login);
-    Result<string, string> GetPatientName(String login);
-    Result<string, string> GetPatientRecords(String login);
+    Result<User, TError> GetPatient(String login);
+    Result<string, TError> GetPatientName(String login);
+    Result<string, TError> GetPatientRecords(String login);
     Result ChangePassword(string loggedPatient, string oldPassword, string newPassword);
   }
 }
