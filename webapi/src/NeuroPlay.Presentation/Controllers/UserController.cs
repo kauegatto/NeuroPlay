@@ -48,7 +48,7 @@ namespace NeuroPlay.Presentation.Controllers
       catch (MySqlException ex)
       {
         Debug.WriteLine(ex);
-        return StatusCode(500, "erro");
+        return StatusCode(500, "Internal Server Error");
       }
 
     }

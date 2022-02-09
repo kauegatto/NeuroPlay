@@ -26,7 +26,7 @@ namespace NeuroPlay.Data.Repositories.MySql
     {
       _connection.Close(); // this repository is injected as scoped so we don't need to close it after every method call
     }
-    public Result<User, string> Add(User newUser)
+    public Result<User, Error> Add(User newUser)
     {
       string sqlCommand = "insert into usuario values (@Email, @PhoneNumber, md5(@Password), @Username, 1);";
       MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
@@ -36,7 +36,7 @@ namespace NeuroPlay.Data.Repositories.MySql
       cmd.Parameters.AddWithValue("@Username", newUser.Username);
       cmd.ExecuteNonQuery();
       //exceptions will be catch on controllers and return internal server error
-      return Result<User, string>.Ok(newUser, null);
+      return Result<User, Error>.Ok(newUser, null);
     }
 
     public Result ChangePassword(string loggedUser, string oldPassword, string newPassword)
