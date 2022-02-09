@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NeuroPlay.Data.Repositories.MySql
 {
-  public class MySQLPatientRepository : IPatientRepository, IDisposable
+  public class MySQLPatientRepository : IPatientRepository<IError>, IDisposable
   {
     private readonly MySQLConfig _config;
     private readonly MySqlConnection _connection;
@@ -22,12 +22,8 @@ namespace NeuroPlay.Data.Repositories.MySql
       _connection = new MySqlConnection(_config.ConnectionString);
       _connection.Open();
     }
-    public void Dispose()
-    {
-      _connection.Close();
-    }
 
-    public Result<User, string> Add(Patient newPatient)
+    public Result<Patient, IError> Add(Patient entity)
     {
       throw new NotImplementedException();
     }
@@ -37,29 +33,32 @@ namespace NeuroPlay.Data.Repositories.MySql
       throw new NotImplementedException();
     }
 
-    public Result Delete(string login)
+    public Result Delete(string email)
     {
       throw new NotImplementedException();
     }
 
+    public void Dispose()
+    {
+      _connection.Close();
+    }
 
-
-    public Result<User, string> FindByPK(string login)
+    public Result<Patient, IError> FindByPk(string email)
     {
       throw new NotImplementedException();
     }
 
-    public Result<User, string> GetPatient(string login)
+    public Result<User, IError> GetPatient(string login)
     {
       throw new NotImplementedException();
     }
 
-    public Result<string, string> GetPatientName(string login)
+    public Result<string, IError> GetPatientName(string login)
     {
       throw new NotImplementedException();
     }
 
-    public Result<string, string> GetPatientRecords(string login)
+    public Result<string, IError> GetPatientRecords(string login)
     {
       throw new NotImplementedException();
     }
@@ -69,7 +68,7 @@ namespace NeuroPlay.Data.Repositories.MySql
       throw new NotImplementedException();
     }
 
-    public Result<User, string> Update(string loggedPatient, Patient updatedData)
+    public Result<Patient, IError> Update(Patient updatedPatient)
     {
       throw new NotImplementedException();
     }

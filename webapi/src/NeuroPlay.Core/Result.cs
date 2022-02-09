@@ -30,9 +30,9 @@ namespace NeuroPlay.Core
     {
       Error = error;
     }
-    public static Result<TError> Ok()
+    public static new Result<TError> Ok()
     {
-      return new Result<TError>(true, null);
+      return new Result<TError>(true, default(TError)); // default(TError) is null
     }
     public static Result<TError> Fail(TError error)
     {
@@ -50,13 +50,13 @@ namespace NeuroPlay.Core
       Data = data;
       Error = error;
     }
-    public static Result<TData, TError> Ok(TData data, TError error)
+    public static Result<TData, TError> Ok(TData data)
     {
-      return new Result<TData, TError>(true, data, error);
+      return new Result<TData, TError>(true, data, default(TError)); // default(TError) is null
     }
     public static Result<TData, TError> Fail(TError error)
     {
-      return new Result<TData, TError>(false, null, error);
+      return new Result<TData, TError>(false, default(TData), error); // default(TData) is null
     }
   }
 }

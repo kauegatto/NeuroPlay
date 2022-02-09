@@ -7,6 +7,6 @@ namespace NeuroPlay.Core.IRepositories
     Result<T, TError> FindByPk(TPk primaryKey);
     Result<T, TError> Add(T entity);
     Result<T, TError> Update(T entity);
-    Result<TError> Delete(T entity);
+    Result Delete(T entity);
   }
 }

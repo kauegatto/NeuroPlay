@@ -13,5 +13,8 @@ namespace NeuroPlay.Core
     public Error(string error) : base(new List<string> { error })
     {
     }
+    public Error() : base(new List<string>())
+    {
+    }
   }
 }

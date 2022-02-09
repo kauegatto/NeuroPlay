@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NeuroPlay.Data
 {
-    public class MySQLConfig
-    {
-        public string ConnectionString { get; set; }
-    }
+  public class MySQLConfig
+  {
+    public string? ConnectionString { get; set; }
+  }
 }

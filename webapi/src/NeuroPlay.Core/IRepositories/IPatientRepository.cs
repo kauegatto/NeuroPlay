@@ -5,10 +5,10 @@ namespace NeuroPlay.Core.IRepositories
   public interface IPatientRepository<TError>
   where TError : class, IError
   {
-    Result<User, TError> Add(Patient newPatient);
-    Result<User, TError> Update(string loggedPatient, Patient updatedData);
-    Result Delete(String login);
-    Result<User, TError> FindByPK(String login);
+    Result<Patient, TError> FindByPk(string email);
+    Result<Patient, TError> Add(Patient entity);
+    Result<Patient, TError> Update(Patient updatedPatient);
+    Result Delete(string email);
     bool UserCanManipulatePatient(String userEmail, string patientLogin);
     bool PatientExists(String login);
     Result<User, TError> GetPatient(String login);

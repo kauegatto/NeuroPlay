@@ -10,8 +10,9 @@ using NeuroPlay.Core;
 
 namespace NeuroPlay.Data.Repositories.MySql
 {
-  public class MySQLUserRepository : IUserRepository, IDisposable
+  public class MySQLUserRepository : IUserRepository<IError>, IDisposable
   {
+    #region Fields, Properties and Constructor
     private readonly MySQLConfig _config;
     private readonly MySqlConnection _connection;
 
@@ -21,12 +22,15 @@ namespace NeuroPlay.Data.Repositories.MySql
       _connection = new MySqlConnection(_config.ConnectionString);
       _connection.Open();
     }
+    #endregion
 
     public void Dispose()
     {
       _connection.Close(); // this repository is injected as scoped so we don't need to close it after every method call
     }
-    public Result<User, Error> Add(User newUser)
+
+    #region Add,Find,Update,Delete
+    public Result<User, IError> Add(User newUser)
     {
       string sqlCommand = "insert into usuario values (@Email, @PhoneNumber, md5(@Password), @Username, 1);";
       MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
@@ -36,24 +40,20 @@ namespace NeuroPlay.Data.Repositories.MySql
       cmd.Parameters.AddWithValue("@Username", newUser.Username);
       cmd.ExecuteNonQuery();
       //exceptions will be catch on controllers and return internal server error
-      return Result<User, Error>.Ok(newUser, null);
+      return Result<User, IError>.Ok(newUser);
     }
-
-    public Result ChangePassword(string loggedUser, string oldPassword, string newPassword)
+    public Result<User, IError> FindByPk(string email)
     {
       throw new NotImplementedException();
     }
-
-    public Result ChangePhoneNumber(string loggedUser, string newPhoneNumber)
+    public Result<ICollection<User>, IError> FindAll()
     {
       throw new NotImplementedException();
     }
-
-    public Result ChangeUsername(string loggedUser, string newUsername)
+    public Result<User, IError> Update(User updatedUser)
     {
       throw new NotImplementedException();
     }
-
     public Result Delete(string email)
     {
       if (email == null)
@@ -67,20 +67,7 @@ namespace NeuroPlay.Data.Repositories.MySql
       cmd.ExecuteNonQuery();
       return Result.Ok();
     }
-    public Result<ICollection<User>, string> FindAll()
-    {
-      throw new NotImplementedException();
-    }
-
-    public Result<string> FindByPK(string email)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Result<ICollection<Patient>, string> FindPatients(string email)
-    {
-      throw new NotImplementedException();
-    }
+    #endregion
 
     public Result ValidateLogin(string email, string password)
     {
@@ -104,7 +91,8 @@ namespace NeuroPlay.Data.Repositories.MySql
       }
       else { return Result.Fail(); }
     }
-    bool IUserRepository.UserExists(string email)
+
+    bool UserExists(string email)
     {
       try
       {
@@ -124,5 +112,44 @@ namespace NeuroPlay.Data.Repositories.MySql
       }
     }
 
+    public Result<ICollection<Patient>, IError> FindPatients(string email)
+    {
+      throw new NotImplementedException();
+    }
+
+    bool IUserRepository<IError>.UserExists(string email)
+    {
+      if (email == null)
+        return false;
+      bool hasRows;
+
+      string sqlCommand = "Select * from usuario where nm_email_usuario = @Email";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Email", email);
+      MySqlDataReader reader = cmd.ExecuteReader();
+      reader.Read();
+      hasRows = reader.HasRows;
+      reader.Close();
+
+      if (hasRows)
+        return true;
+      else
+        return false;
+    }
+
+    public Result<User, IError> ChangeUsername(string loggedUser, string newUsername)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result<User, IError> ChangePhoneNumber(string loggedUser, string newPhoneNumber)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Result<User, IError> ChangePassword(string loggedUser, string oldPassword, string newPassword)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

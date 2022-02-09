@@ -10,25 +10,28 @@ namespace NeuroPlay.Core.Services
 {
   public class UserService
   {
-    IUserRepository _userRepository { get; set; }
-    public UserService(IUserRepository userRepository)
+    IUserRepository<IError> _userRepository { get; set; }
+    public UserService(IUserRepository<IError> userRepository)
     {
       _userRepository = userRepository;
     }
-    public Result<User, Error> Add(User newUser)
+    public Result<User, IError> Add(User newUser)
     {
       List<string> errors = new List<string>();
       if (newUser.Email == null || newUser.Password == null)
       {
         errors.Add("Email and password are required");
       }
-      if (newUser.Email.Length < 3 || newUser.Password.Length < 3)
+      else
       {
-        errors.Add("Email and password must have at least 3 characters");
+        if (newUser.Email.Length < 3 || newUser.Password.Length < 3)
+          errors.Add("Email and password must have at least 3 characters");
+        if (UserExists(newUser.Email))
+          errors.Add("User already exists");
       }
       if (errors.Count > 0)
       {
-        return Result<User, Error>.Fail(new Error(errors));
+        return Result<User, IError>.Fail(new Error(errors));
       }
       return _userRepository.Add(newUser);
     }
@@ -50,7 +53,8 @@ namespace NeuroPlay.Core.Services
     }
     public bool UserExists(string email)
     {
-      if (email == null) { throw new Exception(); }
+      if (email == null)
+        return false;
       return _userRepository.UserExists(email);
     }
   }
