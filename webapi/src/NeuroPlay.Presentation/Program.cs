@@ -1,3 +1,4 @@
+using NeuroPlay.Core;
 using NeuroPlay.Core.IRepositories;
 using NeuroPlay.Core.Services;
 using NeuroPlay.Data;
@@ -9,8 +10,12 @@ builder.Services.AddSingleton<MySQLConfig>(new MySQLConfig()
 {
   ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")
 });
-builder.Services.AddScoped<IUserRepository, MySQLUserRepository>();
-builder.Services.AddScoped<IPatientRepository, MySQLPatientRepository>();
+
+// injecting IError
+builder.Services.AddScoped<IError, Error>();
+
+builder.Services.AddScoped<IUserRepository<IError>, MySQLUserRepository>();
+builder.Services.AddScoped<IPatientRepository<IError>, MySQLPatientRepository>();
 builder.Services.AddScoped<UserService>();
 
 

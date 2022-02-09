@@ -21,14 +21,14 @@ namespace NeuroPlay.Presentation.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return new string[] { "value1", "value2" };
+      throw new NotImplementedException();
     }
 
     // [GET] /User/5
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
-      return "value";
+      throw new NotImplementedException();
     }
     [HttpPost]
     public IActionResult Post(User newUser)
@@ -45,10 +45,10 @@ namespace NeuroPlay.Presentation.Controllers
           return BadRequest(result.Error);
         }
       }
-      catch (MySqlException ex)
+      catch (Exception ex)
       {
         Debug.WriteLine(ex);
-        return StatusCode(500, "Internal Server Error");
+        return StatusCode(500, "Internal Server Error - " + ex.Message); // 500 Internal Server Error;
       }
 
     }
@@ -56,12 +56,14 @@ namespace NeuroPlay.Presentation.Controllers
     [HttpPut("{id}")]
     public IActionResult Put(User newUser)
     {
+      throw new NotImplementedException();
     }
 
     // DELETE api/<UserController>/5
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
+      throw new NotImplementedException();
     }
   }
 }
