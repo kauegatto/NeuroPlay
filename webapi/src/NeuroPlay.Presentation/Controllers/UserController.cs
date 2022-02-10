@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using NeuroPlay.Core.IRepositories;
@@ -17,22 +18,14 @@ namespace NeuroPlay.Presentation.Controllers
     {
       _userService = userService;
     }
-
     [HttpGet]
     public IActionResult Get()
     {
       throw new NotImplementedException();
     }
-
-    // [GET] /User/5
-    [HttpGet("{id}")]
-    public IActionResult Get(int id)
-    {
-      throw new NotImplementedException();
-    }
-    [HttpPost]
     public IActionResult Post(User newUser)
     {
+      #region try
       try
       {
         var result = _userService.Add(newUser);
@@ -45,6 +38,7 @@ namespace NeuroPlay.Presentation.Controllers
           return BadRequest(result.Error);
         }
       }
+      #endregion
       catch (Exception ex)
       {
         Debug.WriteLine(ex);
@@ -58,7 +52,6 @@ namespace NeuroPlay.Presentation.Controllers
     {
       throw new NotImplementedException();
     }
-
     // DELETE api/<UserController>/5
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)

@@ -94,22 +94,15 @@ namespace NeuroPlay.Data.Repositories.MySql
 
     bool UserExists(string email)
     {
-      try
-      {
-        bool hasRows;
-        string sqlCommand = "Select * from usuario where nm_email_usuario = @Email";
-        MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
-        cmd.Parameters.AddWithValue("@Email", email);
-        MySqlDataReader reader = cmd.ExecuteReader();
-        reader.Read();
-        hasRows = reader.HasRows;
-        reader.Close();
-        return hasRows;
-      }
-      catch (Exception ex)
-      {
-        throw ex;  //sei que isso aqui não é certo
-      }
+      bool hasRows;
+      string sqlCommand = "Select * from usuario where nm_email_usuario = @Email";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Email", email);
+      MySqlDataReader reader = cmd.ExecuteReader();
+      reader.Read();
+      hasRows = reader.HasRows;
+      reader.Close();
+      return hasRows;
     }
 
     public Result<ICollection<Patient>, IError> FindPatients(string email)

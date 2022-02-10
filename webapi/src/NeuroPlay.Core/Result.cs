@@ -1,10 +1,5 @@
 namespace NeuroPlay.Core
 {
-  public interface IResult
-  {
-    public bool Succeded { get; }
-    public bool Failed { get; }
-  }
   public class Result : IResult
   {
     public bool Succeded { get; }
