@@ -44,7 +44,23 @@ namespace NeuroPlay.Data.Repositories.MySql
     }
     public Result<User, IError> FindByPk(string email)
     {
-      throw new NotImplementedException();
+      string sqlCommand = "select * from usuario where nm_email_usuario = @Email;";
+      MySqlCommand cmd = new MySqlCommand(sqlCommand, _connection);
+      cmd.Parameters.AddWithValue("@Email", email);
+      MySqlDataReader reader = cmd.ExecuteReader();
+      if (reader.Read())
+      {
+        var user = new User(
+          reader.GetString("nm_email_usuario"),
+          reader.GetString("cd_telefone_usuario"),
+          reader.GetString("nm_senha_usuario"),
+          reader.GetString("nm_usuario")
+        );
+        reader.Close();
+        return Result<User, IError>.Ok(user);
+      }
+      reader.Close();
+      return Result<User, IError>.Fail(new Error("User not found"));
     }
     public Result<ICollection<User>, IError> FindAll()
     {
@@ -68,7 +84,6 @@ namespace NeuroPlay.Data.Repositories.MySql
       return Result.Ok();
     }
     #endregion
-
     public Result ValidateLogin(string email, string password)
     {
       if (email == null || password == null)
@@ -91,7 +106,6 @@ namespace NeuroPlay.Data.Repositories.MySql
       }
       else { return Result.Fail(); }
     }
-
     bool UserExists(string email)
     {
       bool hasRows;
@@ -104,12 +118,10 @@ namespace NeuroPlay.Data.Repositories.MySql
       reader.Close();
       return hasRows;
     }
-
     public Result<ICollection<Patient>, IError> FindPatients(string email)
     {
       throw new NotImplementedException();
     }
-
     bool IUserRepository<IError>.UserExists(string email)
     {
       if (email == null)
@@ -129,17 +141,14 @@ namespace NeuroPlay.Data.Repositories.MySql
       else
         return false;
     }
-
     public Result<User, IError> ChangeUsername(string loggedUser, string newUsername)
     {
       throw new NotImplementedException();
     }
-
     public Result<User, IError> ChangePhoneNumber(string loggedUser, string newPhoneNumber)
     {
       throw new NotImplementedException();
     }
-
     public Result<User, IError> ChangePassword(string loggedUser, string oldPassword, string newPassword)
     {
       throw new NotImplementedException();

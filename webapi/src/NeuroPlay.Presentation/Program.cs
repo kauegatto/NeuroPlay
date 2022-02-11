@@ -24,7 +24,11 @@ builder.Services.AddScoped<IPatientRepository<IError>, MySQLPatientRepository>()
 builder.Services.AddScoped<UserService>();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+  .ConfigureApiBehaviorOptions(options =>
+  {
+    options.SuppressModelStateInvalidFilter = true; //remove a validação de model automática do c#
+  });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

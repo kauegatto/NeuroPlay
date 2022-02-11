@@ -57,5 +57,13 @@ namespace NeuroPlay.Core.Services
         return false;
       return _userRepository.UserExists(email);
     }
+    public Result<User, IError> FindByPk(string email)
+    {
+      if (email == null)
+      {
+        return Result<User, IError>.Fail(new Error("Email is required"));
+      }
+      return _userRepository.FindByPk(email);  // will treat empty data as a valid result.
+    }
   }
 }

@@ -14,16 +14,42 @@ namespace NeuroPlay.Presentation.Controllers
   public class UserController : ControllerBase
   {
     private readonly UserService _userService;
+
     public UserController(UserService userService)
     {
       _userService = userService;
     }
+
+    //FromBody is necessary since it doesn't infer primitives like int or string
+    // see type inference in https://docs.microsoft.com/pt-br/aspnet/core/web-api/?view=aspnetcore-6.0#binding-source-parameter-inference
+
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(
+     [FromQuery] string email)
     {
-      throw new NotImplementedException();
+      try
+      {
+        var result = _userService.FindByPk(email);
+        if (result.Succeded)
+        {
+          return Ok(result.Data);
+        }
+        else
+        {
+          return BadRequest(result.Error);
+        }
+      }
+      catch (Exception ex)
+      {
+        Debug.WriteLine("Server Error: " + ex.Message);
+        Console.WriteLine("Server Error: " + ex.Message);
+        return StatusCode(500, "Internal server error");
+      }
     }
-    public IActionResult Post(User newUser)
+
+    [HttpPost]
+    public IActionResult Post(
+      [FromBody] User newUser)
     {
       #region try
       try
@@ -31,7 +57,7 @@ namespace NeuroPlay.Presentation.Controllers
         var result = _userService.Add(newUser);
         if (result.Succeded)
         {
-          return Ok(result.Data);
+          return CreatedAtAction("User", result.Data);
         }
         else
         {
@@ -46,12 +72,14 @@ namespace NeuroPlay.Presentation.Controllers
       }
 
     }
+
     // PUT api/<UserController>/5
     [HttpPut("{id}")]
     public IActionResult Put(User newUser)
     {
       throw new NotImplementedException();
     }
+
     // DELETE api/<UserController>/5
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
