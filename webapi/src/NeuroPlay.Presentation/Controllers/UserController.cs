@@ -1,8 +1,6 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
-using NeuroPlay.Core.IRepositories;
+using NeuroPlay.Core.DTOs;
 using NeuroPlay.Core.Models;
 using NeuroPlay.Core.Services;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,7 +22,7 @@ namespace NeuroPlay.Presentation.Controllers
     // see type inference in https://docs.microsoft.com/pt-br/aspnet/core/web-api/?view=aspnetcore-6.0#binding-source-parameter-inference
 
     [HttpGet]
-    public IActionResult Get(
+    public ActionResult<UserDTO> Get(
      [FromQuery] string email)
     {
       try
@@ -32,7 +30,7 @@ namespace NeuroPlay.Presentation.Controllers
         var result = _userService.FindByPk(email);
         if (result.Succeded)
         {
-          return Ok(result.Data);
+          return Ok(result.Data.Map());//result.Data is always a User, which has the Map method, which returns a DTO
         }
         else
         {
@@ -48,7 +46,7 @@ namespace NeuroPlay.Presentation.Controllers
     }
 
     [HttpPost]
-    public IActionResult Post(
+    public ActionResult<UserDTO> Post(
       [FromBody] User newUser)
     {
       #region try
@@ -57,7 +55,7 @@ namespace NeuroPlay.Presentation.Controllers
         var result = _userService.Add(newUser);
         if (result.Succeded)
         {
-          return CreatedAtAction("User", result.Data);
+          return StatusCode(201, result.Data.Map()); //result.Data is always a User, which has the Map method, that returns a DTO
         }
         else
         {
@@ -68,7 +66,7 @@ namespace NeuroPlay.Presentation.Controllers
       catch (Exception ex)
       {
         Debug.WriteLine(ex);
-        return StatusCode(500, "Internal Server Error - " + ex.Message); // 500 Internal Server Error;
+        return StatusCode(500, "Internal Server Error"); // 500 Internal Server Error;
       }
 
     }

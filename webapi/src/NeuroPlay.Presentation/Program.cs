@@ -19,6 +19,7 @@ builder.Services.AddSingleton<MySQLConfig>(new MySQLConfig()
 // injecting IError
 builder.Services.AddScoped<IError, Error>();
 
+
 builder.Services.AddScoped<IUserRepository<IError>, MySQLUserRepository>();
 builder.Services.AddScoped<IPatientRepository<IError>, MySQLPatientRepository>();
 builder.Services.AddScoped<UserService>();

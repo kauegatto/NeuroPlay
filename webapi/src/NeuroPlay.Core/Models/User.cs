@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NeuroPlay.Core.DTOs;
 
 namespace NeuroPlay.Core.Models
 {
@@ -22,5 +17,10 @@ namespace NeuroPlay.Core.Models
     public string Username { get; protected set; }
     public string PhoneNumber { get; protected set; }
     public int UserType { get; protected set; }
+
+    public UserDTO Map()
+    {
+      return new UserDTO(Email, Username, PhoneNumber);
+    }
   }
 }
