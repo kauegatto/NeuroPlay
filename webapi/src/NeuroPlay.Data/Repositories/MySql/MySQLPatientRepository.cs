@@ -15,27 +15,10 @@ namespace NeuroPlay.Data.Repositories.MySql
     private readonly MySQLConfig _config;
     private readonly MySqlConnection _connection;
 
-
     public MySQLPatientRepository(MySQLConfig config)
     {
       _config = config;
       _connection = new MySqlConnection(_config.ConnectionString);
-      _connection.Open();
-    }
-
-    public Result<Patient, IError> Add(Patient entity)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Result ChangePassword(string loggedPatient, string oldPassword, string newPassword)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Result Delete(string email)
-    {
-      throw new NotImplementedException();
     }
 
     public void Dispose()
@@ -43,38 +26,69 @@ namespace NeuroPlay.Data.Repositories.MySql
       _connection.Close();
     }
 
+    public void OpenConnection()
+    {
+      if (_connection.State == System.Data.ConnectionState.Closed)
+        _connection.Open();
+    }
+
+    public Result<Patient, IError> Add(Patient entity)
+    {
+      OpenConnection();
+      throw new NotImplementedException();
+    }
+
+    public Result ChangePassword(string loggedPatient, string oldPassword, string newPassword)
+    {
+      OpenConnection();
+      throw new NotImplementedException();
+    }
+
+    public Result Delete(string email)
+    {
+      OpenConnection();
+      throw new NotImplementedException();
+    }
+
     public Result<Patient, IError> FindByPk(string email)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public Result<User, IError> GetPatient(string login)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public Result<string, IError> GetPatientName(string login)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public Result<string, IError> GetPatientRecords(string login)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public bool PatientExists(string login)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public Result<Patient, IError> Update(Patient updatedPatient)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
 
     public bool UserCanManipulatePatient(string userEmail, string patientLogin)
     {
+      OpenConnection();
       throw new NotImplementedException();
     }
   }
