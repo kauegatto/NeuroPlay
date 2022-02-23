@@ -13,17 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<MySQLConfig>(new MySQLConfig()
 {
-  ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")
 });
 
 // injecting IError
 builder.Services.AddScoped<IError, Error>();
 
-
 builder.Services.AddScoped<IUserRepository<IError>, MySQLUserRepository>();
 builder.Services.AddScoped<IPatientRepository<IError>, MySQLPatientRepository>();
 builder.Services.AddScoped<UserService>();
-
 
 builder.Services.AddControllers()
   .ConfigureApiBehaviorOptions(options =>
@@ -40,8 +38,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
